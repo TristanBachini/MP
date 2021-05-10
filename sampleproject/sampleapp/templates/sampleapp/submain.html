@@ -1,0 +1,98 @@
+{%  load static  %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <style>
+      .container-fluid{
+          z-index: 2;
+          margin-top: .5in;
+          background-color: #ffcc00;
+          border-bottom: solid;
+          position: fixed;
+      }
+
+      .navbar-brand{
+          margin-top: .2in;
+          margin-bottom: .2in;
+          width: 1.5in;
+          margin-left: .5in;
+          margin-right: .5in;
+          border-right: solid;
+      }
+
+      #putMargin{
+          margin-right: 9in;
+      }
+
+      .first-row{
+        margin-right: 1in;
+        margin-left: 3in;
+      }
+      .second-row{
+        margin-right:3in;
+      }
+
+      .reg-pass{
+        margin-right: 8in;
+      }
+      #reg-form{
+        background-color:rgba(0,0,0,0.5);
+        margin-left: 1in;
+        margin-right:1in;
+        border-radius: 10px;
+        padding-top: 1in;
+        padding-bottom: 1in;
+        color: white;
+      }
+
+      .reg-error{
+        margin-left: 2in;
+        margin-right: 2in;
+      }
+    </style>
+</head>
+<body style="background-color: #cb9d06;">   
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="register">
+        <div class="container-fluid" id="navhead">
+          <a class="navbar-brand" href="#"><img src="{% static 'sampleapp/images/VerminLogoFullCrop.jpg' %}" alt="logo" class="img-responsive" ></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">  
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Collections</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="TristanFamily.html">Our story</a>
+              </li>
+              <li class="nav-item" id="putMargin">
+                <a class="nav-link" href="writeform.html">Sale</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    {% block content %}
+    
+    {% endblock %}
+</body>
+</html>
