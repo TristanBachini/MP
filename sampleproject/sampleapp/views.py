@@ -1,3 +1,4 @@
+from .models import *
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
@@ -8,8 +9,9 @@ from .forms import *
 # Create your views here.
 
 def homepage(request):
-
-    return render(request, 'sampleapp/homepage.html')
+    shopitems=ShopItem.objects.all()
+    data = {"shopitems":shopitems}
+    return render(request, 'sampleapp/homepage.html',data)
 
 def register(request):
     form = UserForm()
@@ -41,6 +43,9 @@ def login_page(request):
             messages.error(request,"Incorrect password or username")
     
     return render(request, 'sampleapp/login.html')
+
+def aboutus(request):
+    return render(request, 'sampleapp/aboutus.html')
 
 def logout_page(request):
     logout(request)
