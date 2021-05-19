@@ -1,303 +1,384 @@
-{% extends 'sampleapp/main.html' %}
+{% extends 'sampleapp/main.html' %} {% block content %} {% load static %}
 
-{% block content %}
-{%  load static  %}
+<div style="position: relative">
+  <p class="imgThumb">
+    <img src="{% static 'sampleapp/images/GROUP.png' %}" style="width: 100%" />
+    <span>
+      <a id="gtcButton" href="#goShop"
+        ><input type="submit" value="Go straight to collections"
+      /></a>
+    </span>
+  </p>
+</div>
 
-
-<div id="body-upper">
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <center>
-  <form action="#goshop" method="get">
-    <input type="submit" value="Go straight to collections"/>
-  </form>
-</center>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-
-
-  <div id ="slideshowbg">
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <a href="#" >
-          <img src="{% static 'sampleapp/images/slideshow1pic1.jpeg' %}" class="d-block w-100" height="500px" alt="...">
-          </a>
-        </div>
-        <div class="carousel-item">
-          <a href="#" >
-          <img src="{% static 'sampleapp/images/slideshow1pic2.jpeg' %}" class="d-block w-100" height="500px" alt="...">
-          </a>
-        </div>
-        <div class="carousel-item">
-          <a href="#" >
-          <img src="{% static 'sampleapp/images/slideshow1pic3.jpeg' %}" class="d-block w-100" height="500px" alt="...">
-        </a>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+<div
+  id="carouselExampleControls"
+  class="carousel slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+        src="{% static 'sampleapp/images/slideshow1pic1.png' %}"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{% static 'sampleapp/images/slideshow1pic2.png' %}"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{% static 'sampleapp/images/slideshow1pic3.png' %}"
+        class="d-block w-100"
+        alt="..."
+      />
     </div>
   </div>
-  <br>
-<br>
-<br>
-  <div id="container-2">
-    <div id="side-text" style="float: left;">
-      <div id="image" style="float: left;">
-        <div style="float: left;">
-          <img src="{% static 'sampleapp/images/verminpic1.jpg' %}" style="height: 700px;">
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleControls"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleControls"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<br /><br />
+
+<div class="row" style="padding-left: 3%; padding-right: 2%">
+  <div class="float-child" style="width: 55%">
+    <div
+      id="carouselExampleSlidesOnly"
+      class="carousel slide"
+      data-bs-ride="carousel"
+      style="
+        float: center;
+        width: 65%;
+        -moz-box-shadow: 10px 10px 5px rgba(66, 66, 66, 0.863);
+        -webkit-box-shadow: 10px 10px 5px rgba(66, 66, 66, 0.863);
+        box-shadow: 10px 10px 5px rgba(66, 66, 66, 0.863);
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 25px;
+        border-radius: 25px;
+      "
+    >
+      <div class="carousel-inner" style="border-radius: 2px">
+        <div class="carousel-item active" data-bs-interval="5000">
+          <img
+            src="{% static 'sampleapp/images/verminpic1.JPG.png' %}"
+            class="d-block w-100"
+            style="border-radius: 25px"
+          />
         </div>
-        <div id="div-of-text" style="float: left;">
-          <p id="inner-text" style="writing-mode:vertical-lr; font-size: xx-large; margin-top: 4in; font-family: 'Shadows Into Light', cursive;">
-            welcome to family.
-          </p>
+        <div class="carousel-item" data-bs-interval="5000">
+          <img
+            src="{% static 'sampleapp/images/verminpic2.JPG.png' %}"
+            class="d-block w-100"
+            style="border-radius: 25px"
+          />
+        </div>
+        <div class="carousel-item" data-bs-interval="5000">
+          <img
+            src="{% static 'sampleapp/images/verminpic3.png' %}"
+            class="d-block w-100"
+            style="border-radius: 25px"
+          />
         </div>
       </div>
     </div>
-    <div id="video verminpic2" style="float: left;">
-      <video id="vid1" controls autoplay loop>
-        <source src="{% static 'sampleapp/images/verminvid1.mp4' %}" type=video/mp4>
+  </div>
+
+  <div class="float-child" style="width: 45%">
+    <div class="float-start">
+      <video controls autoplay loop style="width: 100%; height: auto">
+        <source src="{% static 'sampleapp/images/verminvid1.mp4' %}"
+        type=video/mp4>
       </video>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div style="float: left;">
-      <img src="{% static 'sampleapp/images/verminpic2.JPG' %}" style="height: 700px; margin-left: 0.5in;">
-    </div>
   </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+</div>
+
+<a id="goShop">
   <div class="shop" id="goshop">
     <div class="tabs">
-      <button class="tablink" onclick="openCity('Tops', this, 'red')" id="defaultOpen">Tops</button>
-      <button class="tablink" onclick="openCity('Bottoms', this, 'green')">Bottoms</button>
-      <button class="tablink" onclick="openCity('Shoes', this, 'blue')">Shoes</button>
-      <button class="tablink" onclick="openCity('Oslo', this, 'orange')">Oslo</button>
+      <button
+        class="tablink"
+        onclick="openCity('Tops', this, 'red')"
+        id="defaultOpen"
+      >
+        Tops
+      </button>
+      <button class="tablink" onclick="openCity('Bottoms', this, 'green')">
+        Bottoms
+      </button>
+      <button class="tablink" onclick="openCity('Shoes', this, 'blue')">
+        Shoes
+      </button>
+      <button class="tablink" onclick="openCity('Accessories', this, 'orange')">
+        Oslo
+      </button>
     </div>
-  
-    <div class="tab-data" >
-      <div id="Tops" class="tabcontent">
-        <table>
-          <tr>
-            {% for shopitem in shopitems %}
-            <td>
-              <div class="card" style="width: 18rem; float: left;">
-                <img src="{{shopitem.item.image.url}}">
-                <div class="card-body">
-                  <p class="card-text" style="color: black;">{{shopitem.item.name}}</p>
-                  <p class="card-text" style="color: black;">{{shopitem.item.price}}</p>
+    <div class="tab-data"></div>
+    {% for item in itemsdict %}
+    {% if item.item.item_type.type == "Tops" %}
+    <div id="Tops" class="tabcontent">
+      <table>
+        <tr>
+          
+          <td>
+            <div
+              class="card"
+              style="width: 18rem; float: left; background-color: #070708"
+            >
+              <img src="{{item.item.image.url}}" />
+              <div class="card-body">
+                <p class="card-text">{{item.item.name}}</p>
+                <p class="card-text">{{item.item.price}}</p>
+                <button
+                  class="btn btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#add_to_cart_{{item.item.id}}"
+                >
+                  <i class="fas fa-shopping-cart" style="color: white"></i>
+                </button>
+
+                <div class="modal fade" id="add_to_cart_{{item.item.id}}">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <form action="{% url 'add_to_cart' %}" method="post">
+                        <div class="modal-body" style="color: black">
+                          Add to cart {{item.item.name}}?
+                          {% csrf_token %}
+                          {{item.form.user}}
+                          {{item.form.clothing}}
+                          <br><br>
+                          <div class="row">
+                              <div class="col-sm-2"></div>
+                              <div class="col-sm-4 text-center">Quantity:</div>
+                              <div class="col-sm-4">{{item.form.quantity}}</div>
+                              <div class="col-sm-2"></div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#"> 
+                            <i class="fas fa-shopping-cart"></i> Add
+                           </button>
+                          <button
+                            type="button"
+                            class="btn btn-outline-danger"
+                            data-bs-dismiss="modal"
+                          >
+                            <i class="fas fa-ban"></i> Cancel
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </td>
-            {% endfor %}
-          </tr>
-        </table>
-        
-      </div>
-    
-      <div id="Bottoms" class="tabcontent">
-        <h1>Bottoms</h1>
-        <p>Paris is the capital of France.</p>
-      </div>
-    
-      <div id="Shoes" class="tabcontent">
-        <h1>Shoes</h1>
-        <p>Tokyo is the capital of Japan.</p>
-      </div>
-    
-      <div id="Oslo" class="tabcontent">
-        <h1>Oslo</h1>
-        <p>Oslo is the capital of Norway.</p>
-      </div>
+            </div>
+          </td>
+          
+        </tr>
+      </table>
     </div>
-  </div>
-  
+    {% elif item.item.item_type.type == "Bottoms" %}
+    <div id="Bottoms" class="tabcontent">
+      <table>
+        <tr>
+          
+          <td>
+            <div
+              class="card"
+              style="width: 18rem; float: left; background-color: #070708"
+            >
+              <img src="{{item.item.image.url}}" />
+              <div class="card-body">
+                <p class="card-text">{{item.item.name}}</p>
+                <p class="card-text">{{item.item.price}}</p>
+                <button
+                  class="btn btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#add_to_cart_{{item.item.id}}"
+                >
+                  <i class="fas fa-shopping-cart" style="color: white"></i>
+                </button>
 
+                <div class="modal fade" id="add_to_cart_{{item.item.id}}">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body" style="color: black">
+                        Add to cart {{item.item.name}}?
+                      </div>
+                      <div class="modal-footer">
+                        <a href="" class="btn btn-outline-warning"
+                          ><i class="fas fa-shopping-cart"></i> Add</a
+                        >
+                        <button
+                          type="button"
+                          class="btn btn-outline-danger"
+                          data-bs-dismiss="modal"
+                        >
+                          <i class="fas fa-ban"></i> Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          
+        </tr>
+      </table>
+    </div>
+    {% elif item.item.item_type.type == "Shoes" %}
+    <div id="Shoes" class="tabcontent">
+      <table>
+        <tr>
+          
+          <td>
+            <div
+              class="card"
+              style="width: 18rem; float: left; background-color: #070708"
+            >
+              <img src="{{item.item.image.url}}" />
+              <div class="card-body">
+                <p class="card-text">{{item.item.name}}</p>
+                <p class="card-text">{{item.item.price}}</p>
+                <button
+                  class="btn btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#add_to_cart_{{item.item.id}}"
+                >
+                  <i class="fas fa-shopping-cart" style="color: white"></i>
+                </button>
 
-</div>
-  
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  
-  <script>
-    function openCity(cityName, elmnt, color) {
-  // Hide all elements with class="tabcontent" by default */
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
+                <div class="modal fade" id="add_to_cart_{{item.item.id}}">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body" style="color: black">
+                        Add to cart {{item.item.name}}?
+                      </div>
+                      <div class="modal-footer">
+                        <a href="" class="btn btn-outline-warning"
+                          ><i class="fas fa-shopping-cart"></i> Add</a
+                        >
+                        <button
+                          type="button"
+                          class="btn btn-outline-danger"
+                          data-bs-dismiss="modal"
+                        >
+                          <i class="fas fa-ban"></i> Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          
+        </tr>
+      </table>
+    </div>
+    {% elif item.item.item_type.type == "Accessories" %}
+    <div id="Accessories" class="tabcontent">
+      <table>
+        <tr>
+          
+          <td>
+            <div
+              class="card"
+              style="width: 18rem; float: left; background-color: #070708"
+            >
+              <img src="{{item.item.image.url}}" />
+              <div class="card-body">
+                <p class="card-text">{{item.item.name}}</p>
+                <p class="card-text">{{item.item.price}}</p>
+                <button
+                  class="btn btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#add_to_cart_{{item.item.id}}"
+                >
+                  <i class="fas fa-shopping-cart" style="color: white"></i>
+                </button>
+
+                <div class="modal fade" id="add_to_cart_{{item.item.id}}">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body" style="color: black">
+                        Add to cart {{item.item.name}}?
+                      </div>
+                      <div class="modal-footer">
+                        <a href="" class="btn btn-outline-warning"
+                          ><i class="fas fa-shopping-cart"></i> Add</a
+                        >
+                        <button
+                          type="button"
+                          class="btn btn-outline-danger"
+                          data-bs-dismiss="modal"
+                        >
+                          <i class="fas fa-ban"></i> Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          
+        </tr>
+      </table>
+    </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+</a>
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+<script>
+  function openCity(cityName, elmnt, color) {
+    // Hide all elements with class="tabcontent" by default */
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Remove the background color of all tablinks/buttons
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].style.backgroundColor = "";
+    }
+
+    // Show the specific tab content
+    document.getElementById(cityName).style.display = "block";
+
+    // Add the specific color to the button used to open the tab content
+    elmnt.style.backgroundColor = color;
   }
 
-  // Remove the background color of all tablinks/buttons
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].style.backgroundColor = "";
-  }
-
-  // Show the specific tab content
-  document.getElementById(cityName).style.display = "block";
-
-  // Add the specific color to the button used to open the tab content
-  elmnt.style.backgroundColor = color;
-}
-
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-  </script>
+  // Get the element with id="defaultOpen" and click on it
+  document.getElementById("defaultOpen").click();
+</script>
 
 {% endblock %}

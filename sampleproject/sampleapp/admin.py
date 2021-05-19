@@ -3,4 +3,5 @@ from .models import *
 # Register your models here.
 
 admin.site.register(Item)
-admin.site.register(ShopItem)
+admin.site.register(ShoppingCart)
+admin.site.register(Type)

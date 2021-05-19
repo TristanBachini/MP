@@ -1,0 +1,37 @@
+{% extends 'sampleapp/submain.html' %} {% block content %} {% load static %}
+
+<div class="container"> 
+    <h1>Your Cart </h1>
+    <br><br>
+    <strong> Items: </strong> {{item_count}}
+    <br><br>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in cart %}
+            <tr>
+                <td><img src="{{c.item.clothing.image.url}}"style="width: 2in; height:2in;"></td> 
+                <td>{{c.item.clothing.name}}</td>
+                <td>{{c.item.clothing.price}}</td>
+                <td>{{c.item.quantity}}</td>
+                <td>
+                    <a href="{% url 'update_item' c.item.id %}" class="btn btn-outline-dark">
+                        <i class="fas fa-edit"></i>
+                        Update Item
+                    </a>
+                </td> 
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

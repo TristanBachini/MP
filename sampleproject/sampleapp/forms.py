@@ -20,3 +20,13 @@ class UserForm(UserCreationForm):
             'email':TextInput(attrs={'class':'form-control', 'placeholder':'Email', 'aria-label':'Email','required':True}),
 
         }
+
+class ShoppingCartForm(ModelForm):
+    class Meta:
+        model = ShoppingCart
+        fields = "__all__"
+        widgets = {
+            'user':  HiddenInput( attrs = {'type':'hidden'} ),
+            'clothing':  HiddenInput( attrs = {'type':'hidden'} ),
+            'quantity': NumberInput ( attrs = {'class':'form-control', 'min':'1'} ),
+        }

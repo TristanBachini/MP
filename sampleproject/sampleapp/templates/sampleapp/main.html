@@ -1,108 +1,108 @@
-{%  load static  %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VERMIN</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+    <!--background-color: #ffcc00;-->
     <style>
-      .container-fluid{
-          z-index: 2;
-          margin-top: .5in;
-          background-color: #ffcc00;
-          border-bottom: solid;
-          position: fixed;
+      .float-child {
+        float: left;
       }
 
-      .navbar-brand{
-          margin-top: .2in;
-          margin-bottom: .2in;
-          width: 1.5in;
-          margin-left: .5in;
-          margin-right: .5in;
-          border-right: solid;
+      .container-fluid {
+        z-index: 2;
+        margin-top: 0.5in;
       }
 
-      #putMargin{
-          margin-right: 9in;
+      .navbar-brand {
+        margin-top: 0.2in;
+        margin-bottom: 0.2in;
+        width: 1.5in;
+        margin-left: 0.5in;
+        margin-right: 0.5in;
+        border-right: solid;
       }
 
-      #homepageID{
-          background-image: url("{% static 'sampleapp/images/thebg2.png' %}");
-          background-size:cover;
-          background-repeat: no-repeat;
+      #putMargin {
+        margin-right: 9in;
       }
 
-      #carouselExampleIndicators{
-        align-items: center;
-        width: 1200px;
-        margin-left:1.5in;
-        margin-top: .5in;
+      #homepageID {
+        background-image: url("{% static 'sampleapp/images/bg.png' %}");
+        background-size: cover;
+        background-repeat: repeat;
+        background-attachment: fixed;
       }
-      #vid1{
-        border: none;
-        width:500px;
-        margin-left:1.5in;
-      }
-      
 
-      #side-text{
-        background-color:rgba(0,0,0,0.5);
-        padding:0.3in;
-        border-radius: 0.5in;
+      #inner-text {
+        font-size: large;
       }
-      #image{
-        background-color: #ffcc00;
-        margin: .5in;
-        padding-top: .5in;
-        padding-bottom: .5in;
-        padding-left: .5in;
+      #div-of-text {
+        margin-left: -0.3in;
       }
-      #inner-text{
-        font-size:large;
-      }
-      #div-of-text{
-        margin-left: -.3in;
-      }
-      #body-upper{
+      #body-upper {
         width: auto;
         height: auto;
       }
       .div-shop {
-      display: flex;
-      margin-top: 5in;
-      padding-left: 5.5in;
-      padding-bottom: 8in;
-      background-color: rgba(255,255,255,0.5);
+        display: flex;
+        margin-top: 5in;
+        padding-left: 5.5in;
+        padding-bottom: 8in;
+        background-color: rgba(255, 255, 255, 0.5);
       }
+
       #nav-shop {
-      display: flex;
-      flex-direction:row;
-      margin-right: 50px;
-      background-color: seagreen;
-      cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        margin-right: 50px;
+        background-color: seagreen;
+        cursor: pointer;
       }
       nav a {
-      padding: 10px;
+        padding: 10px;
       }
+
       nav a:hover {
-      background-color: gold;
-      display: block;
+        background-color: gold;
+        display: block;
       }
+
       main div {
-      display: none;
-      padding: 20px;
+        display: none;
+        padding: 20px;
       }
+
       .active {
-      display: block;
+        display: block;
       }
-      
+
       .tablink {
         background-color: #555;
         color: white;
@@ -129,86 +129,155 @@
         text-align: center;
       }
 
-      #London {background-color:red;}
-      #Paris {background-color:green;}
-      #Tokyo {background-color:blue;}
-      #Oslo {background-color:orange;}
+      #London {
+        background-color: red;
+      }
+      #Paris {
+        background-color: green;
+      }
+      #Tokyo {
+        background-color: blue;
+      }
+      #Oslo {
+        background-color: orange;
+      }
 
-      .indent{
+      .indent {
         text-indent: 40px;
-        font-family: 'Shadows Into Light', cursive;
+        font-family: "Shadows Into Light", cursive;
       }
 
       .owner {
-      position: relative;
-      text-align: center;
-      color: white;
-    }
-    
-    .bottom-right {
-      position: absolute;
-      bottom: 8px;
-      left: 16px;
-    }
+        position: relative;
+        text-align: center;
+        color: white;
+      }
+
+      .bottom-right {
+        position: absolute;
+        bottom: 8px;
+        left: 16px;
+      }
+
+      .imgThumb:hover img {
+        filter: grayscale(100%);
+        -webkit-filter: grayscale(100%);
+        transition: filter 0.3s ease-in-out;
+      }
+
+      .imgThumb span {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 45%;
+      }
+
+      .imgThumb:hover span {
+        display: block;
+      }
+
+      .imgThumb span input[type="button"] {
+        width: 150px;
+        height: 40px;
+      }
     </style>
-</head>
-<body id="homepageID">
+  </head>
+
+  <body id="homepageID">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid" id="navhead">
-          <a class="navbar-brand" href="{% url 'homepage'  %}"><img src="{% static 'sampleapp/images/VerminLogoFullCrop.jpg' %}" alt="logo" class="img-responsive" ></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">  
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'homepage'  %}">Collections</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'aboutus'  %}">Our story</a>
-              </li>
-              <li class="nav-item" id="putMargin">
-                <a class="nav-link" href="{% url 'homepage'  %}">Sale</a>
-              </li>
-              {% if not request.user.is_authenticated %}
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Login/Register
-                    </a>
-                    
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
-                        <li ><a class="dropdown-item"  href="{% url 'login' %}  ">Login</a></li>
-                        <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Terms of service</a></li>
-                      </ul>
-                    
-                    
-                  </li>
-              {% else %}
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Account
-                    </a>
-                    
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
-                        <li ><a class="dropdown-item">Welcome {{request.user}}</a></li>
-                        <li ><a class="dropdown-item"  href="#">Shopping Cart</a></li>
-                        <li><a class="dropdown-item" href="#">Wish List</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                      </ul>
-                    
-                    
-                  </li>
-              {% endif %}
-              
-            </ul>
-          </div>
+      <div
+        class="container-fluid"
+        id="navhead"
+        style="background-color: #ffcc00; border-bottom: solid"
+      >
+        <a class="navbar-brand" href="{% url 'homepage'  %}"
+          ><img
+            src="{% static 'sampleapp/images/VerminLogoFullCrop.jpg' %}"
+            alt="logo"
+            class="img-responsive"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="{% url 'homepage'  %}"
+                >Collections</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'aboutus'  %}">Our story</a>
+            </li>
+            <li class="nav-item" id="putMargin">
+              <a class="nav-link" href="{% url 'homepage'  %}">Sale</a>
+            </li>
+            {% if not request.user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Login/Register
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a class="dropdown-item" href="{% url 'login' %}  ">Login</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'register' %}"
+                    >Register</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Terms of service</a></li>
+              </ul>
+            </li>
+            {% else %}
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Account
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li style="margin-left: 10%">Welcome {{request.user}}</li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="{% url 'cart' %}">Shopping Cart</a></li>
+                <li><a class="dropdown-item" href="#">Wish List</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </li>
+              </ul>
+            </li>
+            {% endif %}
+          </ul>
         </div>
-      </nav>
-    {% block content %}
-    
-    {% endblock %}
-</body>
+      </div>
+    </nav>
+    {% block content %} {% endblock %}
+  </body>
 </html>
