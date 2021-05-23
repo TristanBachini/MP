@@ -12,27 +12,24 @@ from .forms import *
 
 
 def homepage(request):
-    # shopitems=ShopItem.objects.all()
-    # data = {"shopitems":shopitems}
-
     items = Item.objects.all()
     itemsdict = []
-    
+
     for item in items:
-        form = ShoppingCartForm({"user": request.user.id, "clothing": item.id, "quantity": 1})
+        form = ShoppingCartForm(
+            {"user": request.user.id, "clothing": item.id, "quantity": 1})
         itemsdict.append({"item": item, "form": form})
 
     data = {"itemsdict": itemsdict}
     return render(request, 'sampleapp/homepage.html', data)
 
+
 def add_to_cart(request):
     form = ShoppingCartForm(request.POST)
     print(form)
-    if( form.is_valid() ):
+    if(form.is_valid()):
         form.save()
         return redirect('/cart')
-    
-
 
 
 def register(request):
@@ -42,7 +39,8 @@ def register(request):
         form = UserForm(request.POST)
         if(form.is_valid()):
             subject = "Vermin registration"
-            message = "<h1>Hello " + request.POST.get('username')+", good day!</h1> <br><br>This is to inform you that you have recently signed up with vermin"
+            message = "<h1>Hello " + request.POST.get(
+                'username')+", good day!</h1> <br><br>This is to inform you that you have recently signed up with vermin."
             from_email = settings.EMAIL_HOST_USER
             recepient_list = [request.POST.get('email')]
 
@@ -55,7 +53,6 @@ def register(request):
 
             email.content_subtype = 'html'
             email.send()
-            
 
             print(request.POST.get('email'))
             form.save()
@@ -94,6 +91,7 @@ def logout_page(request):
     logout(request)
     return redirect('/login')
 
+
 @login_required(login_url='/login')
 def cart(request):
     items = ShoppingCart.objects.filter(user=request.user).order_by('id')
@@ -103,32 +101,38 @@ def cart(request):
     for item in items:
         cum_price = cum_price + (item.quantity * item.clothing.price)
         item_count = item_count + item.quantity
-        form = ShoppingCartForm({"user": item.user.id, "clothing": item.clothing.id, "quantity": item.quantity})
-        cart.append({"item":item, "form": form})
+        form = ShoppingCartForm(
+            {"user": item.user.id, "clothing": item.clothing.id, "quantity": item.quantity})
+        cart.append({"item": item, "form": form})
 
     data = {"cart": cart, "cum_price": cum_price, "item_count": item_count}
     return render(request, 'sampleapp/cart.html', data)
 
+
 @login_required(login_url='login')
-def update_item(request,pk):
+def update_item(request, pk):
     cartitem = ShoppingCart.objects.get(id=pk)
     cartitemform = ShoppingCartForm(instance=cartitem)
 
-    if(request.method=='POST'):
+    if(request.method == 'POST'):
         cartitem = ShoppingCart.objects.get(id=pk)
-        form =  ShoppingCartForm(request.POST, instance=cartitem)
+        form = ShoppingCartForm(request.POST, instance=cartitem)
         if(form.is_valid()):
             form.save()
             return redirect("/cart")
 
     data = {"cartitemform": cartitemform}
-    return render(request, "sampleapp/updatecartitem.html",data)
+    return render(request, "sampleapp/updatecartitem.html", data)
+
+
+def products(request, pk):
+    item = Item.objects.get(id=pk)
+    data = {"item": item}
+    return render(request, 'sampleapp/products.html', data)
 
 
 @login_required(login_url='login')
-def delete_item(request,pk):
+def delete_item(request, pk):
     shoppingcart = ShoppingCart.objects.get(id=pk)
     shoppingcart.delete()
     return redirect("/cart")
-
-

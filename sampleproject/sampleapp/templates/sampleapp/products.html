@@ -1,0 +1,15 @@
+{% extends 'sampleapp/submain.html' %} {% block content %} {% load static %}
+
+<div class="container">
+  <div
+    class="card"
+    style="width: 18rem; float: left; background-color: #070708"
+  >
+    <img src="{{item.image.url}}" width="100%" />
+    <div class="card-body" style="text-align: center; color: white">
+      <p class="card-text">{{item.name}}</p>
+      <p class="card-text">{{item.price}}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

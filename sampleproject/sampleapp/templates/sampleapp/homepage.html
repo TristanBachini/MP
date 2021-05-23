@@ -135,18 +135,18 @@
       </button>
     </div>
     <div class="tab-data"></div>
-    {% for item in itemsdict %}
-    {% if item.item.item_type.type == "Tops" %}
+    {% for item in itemsdict %} {% if item.item.item_type.type == "Tops" %}
     <div id="Tops" class="tabcontent">
       <table>
         <tr>
-          
           <td>
             <div
               class="card"
               style="width: 18rem; float: left; background-color: #070708"
             >
-              <img src="{{item.item.image.url}}" />
+              <a href="{% url 'products' item.item.id %}"
+                ><img src="{{item.item.image.url}}" width="100%"
+              /></a>
               <div class="card-body">
                 <p class="card-text">{{item.item.name}}</p>
                 <p class="card-text">{{item.item.price}}</p>
@@ -163,22 +163,25 @@
                     <div class="modal-content">
                       <form action="{% url 'add_to_cart' %}" method="post">
                         <div class="modal-body" style="color: black">
-                          Add to cart {{item.item.name}}?
-                          {% csrf_token %}
-                          {{item.form.user}}
-                          {{item.form.clothing}}
-                          <br><br>
+                          Add to cart {{item.item.name}}? {% csrf_token %}
+                          {{item.form.user}} {{item.form.clothing}}
+                          <br /><br />
                           <div class="row">
-                              <div class="col-sm-2"></div>
-                              <div class="col-sm-4 text-center">Quantity:</div>
-                              <div class="col-sm-4">{{item.form.quantity}}</div>
-                              <div class="col-sm-2"></div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4 text-center">Quantity:</div>
+                            <div class="col-sm-4">{{item.form.quantity}}</div>
+                            <div class="col-sm-2"></div>
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="submit" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#"> 
+                          <button
+                            type="submit"
+                            class="btn btn-outline-success"
+                            data-bs-toggle="modal"
+                            data-bs-target="#"
+                          >
                             <i class="fas fa-shopping-cart"></i> Add
-                           </button>
+                          </button>
                           <button
                             type="button"
                             class="btn btn-outline-danger"
@@ -194,7 +197,6 @@
               </div>
             </div>
           </td>
-          
         </tr>
       </table>
     </div>
@@ -202,7 +204,6 @@
     <div id="Bottoms" class="tabcontent">
       <table>
         <tr>
-          
           <td>
             <div
               class="card"
@@ -244,7 +245,6 @@
               </div>
             </div>
           </td>
-          
         </tr>
       </table>
     </div>
@@ -252,7 +252,6 @@
     <div id="Shoes" class="tabcontent">
       <table>
         <tr>
-          
           <td>
             <div
               class="card"
@@ -294,7 +293,6 @@
               </div>
             </div>
           </td>
-          
         </tr>
       </table>
     </div>
@@ -302,7 +300,6 @@
     <div id="Accessories" class="tabcontent">
       <table>
         <tr>
-          
           <td>
             <div
               class="card"
@@ -344,13 +341,11 @@
               </div>
             </div>
           </td>
-          
         </tr>
       </table>
     </div>
-    {% endif %}
-    {% endfor %}
-    </div>
+    {% endif %} {% endfor %}
+  </div>
 </a>
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
