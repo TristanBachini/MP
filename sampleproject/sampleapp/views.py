@@ -1,10 +1,11 @@
 from .models import *
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.mail import EmailMessage, send_mail
+from django.conf import settings
 from .forms import *
 
 # Create your views here.
@@ -40,7 +41,25 @@ def register(request):
     if(request.method == "POST"):
         form = UserForm(request.POST)
         if(form.is_valid()):
+            subject = "Vermin registration"
+            message = "<h1>Hello " + request.POST.get('username')+", good day!</h1> <br><br>This is to inform you that you have recently signed up with vermin"
+            from_email = settings.EMAIL_HOST_USER
+            recepient_list = [request.POST.get('email')]
+
+            email = EmailMessage(
+                subject,
+                message,
+                from_email,
+                recepient_list
+            )
+
+            email.content_subtype = 'html'
+            email.send()
+            
+
+            print(request.POST.get('email'))
             form.save()
+            print(request)
             messages.success(request, "Account was created for " +
                              form.cleaned_data.get("username"))
             return redirect('/login')
@@ -104,5 +123,12 @@ def update_item(request,pk):
 
     data = {"cartitemform": cartitemform}
     return render(request, "sampleapp/updatecartitem.html",data)
+
+
+@login_required(login_url='login')
+def delete_item(request,pk):
+    shoppingcart = ShoppingCart.objects.get(id=pk)
+    shoppingcart.delete()
+    return redirect("/cart")
 
 

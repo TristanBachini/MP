@@ -26,6 +26,37 @@
                         <i class="fas fa-edit"></i>
                         Update Item
                     </a>
+                </td>
+                <td>
+                    <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#delete_{{c.item.id}}">
+                        <i class="fas fa-trash"></i>
+                        Remove Item
+                    </button>
+                    
+                    <div class="modal fade" id="delete_{{c.item.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Remove to Cart Confirmation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-start">
+                                Are you sure you want to remove "{{c.item.clothing}}"?
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'delete_item' c.item.id %}" type="button" class="btn btn-outline-success"> 
+                                    <i class="fas fa-minus-circle"></i> 
+                                    Remove Item
+                                </a>
+                        
+                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                                    <i class="fas fa-ban"></i> 
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                 </td> 
             </tr>
 
