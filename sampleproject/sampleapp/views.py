@@ -24,12 +24,10 @@ def homepage(request):
     return render(request, 'sampleapp/homepage.html', data)
 
 
-def add_to_cart(request):
-    form = ShoppingCartForm(request.POST)
-    print(form)
-    if(form.is_valid()):
-        form.save()
-        return redirect('/cart')
+def products(request, pk):
+    item = Item.objects.get(id=pk)
+    data = {"item": item}
+    return render(request, 'sampleapp/products.html', data)
 
 
 def register(request):
@@ -44,6 +42,7 @@ def register(request):
             from_email = settings.EMAIL_HOST_USER
             recepient_list = [request.POST.get('email')]
 
+            # send_mail(subject, message, from_email, recepient_list)
             email = EmailMessage(
                 subject,
                 message,
@@ -59,6 +58,7 @@ def register(request):
             print(request)
             messages.success(request, "Account was created for " +
                              form.cleaned_data.get("username"))
+
             return redirect('/login')
 
     data = {"form": form}
@@ -93,6 +93,15 @@ def logout_page(request):
 
 
 @login_required(login_url='/login')
+def add_to_cart(request):
+    form = ShoppingCartForm(request.POST)
+    print(form)
+    if(form.is_valid()):
+        form.save()
+        return redirect('/cart')
+
+
+@login_required(login_url='/login')
 def cart(request):
     items = ShoppingCart.objects.filter(user=request.user).order_by('id')
     cart = []
@@ -123,12 +132,6 @@ def update_item(request, pk):
 
     data = {"cartitemform": cartitemform}
     return render(request, "sampleapp/updatecartitem.html", data)
-
-
-def products(request, pk):
-    item = Item.objects.get(id=pk)
-    data = {"item": item}
-    return render(request, 'sampleapp/products.html', data)
 
 
 @login_required(login_url='login')
