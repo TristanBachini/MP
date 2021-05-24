@@ -1,15 +1,63 @@
 {% extends 'sampleapp/submain.html' %} {% block content %} {% load static %}
 
-<div class="container">
-  <div
-    class="card"
-    style="width: 18rem; float: left; background-color: #070708"
-  >
-    <img src="{{item.image.url}}" width="100%" />
-    <div class="card-body" style="text-align: center; color: white">
-      <p class="card-text">{{item.name}}</p>
-      <p class="card-text">{{item.price}}</p>
-    </div>
+<div class="flex-container" style="display: flex; border: 1px solid rgba(0, 26, 255, 0);">
+
+  <div class="flex-child" style="flex: 1; border: 2px solid rgba(255, 255, 0, 0); margin: 20px; width: 50%;">
+    <img src="{{item.image.url}}" width="100%"/>
   </div>
+  
+  <div class="flex-child" style="flex: 1; border: 2px solid rgba(255, 255, 255, 0); margin: 20px; width: 50%;">
+    <div style="border: 2px solid rgba(0, 255, 157, 0); margin-left: 5%; margin-right: 5%; margin-top: 5%;">
+      <p class="h6">Vermin</p>
+      <p class="h1">{{item.name}}</p>
+      <h1 class="display-6">{{item.price}}</h1>
+    </div>
+
+    <div style="margin-left: 5%; margin-right: 5%;">
+      <div class="col-md-4">
+        <p class="h6">Size</p>
+        <select class="form-select" id="autoSizingSelect">
+          <option value="1">Small</option>
+          <option value="2">Medium</option>
+          <option value="3">Large</option>
+        </select>
+      </div>
+
+      <div class="col-md-4" style="margin-top: 3%;">
+        <p class="h6">Quantity</p>
+        <select class="form-select" id="autoSizingSelect">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+        </select>
+        <br>
+        <button type="submit" class="btn btn-warning">
+          <i class="fas fa-cart-plus"></i>
+            Add to Cart  
+        </button>
+      </div>
+      <br>
+      <p style="font-size: 13px; color: rgba(0, 0, 0, 0.479);">The design is a homage to one of the famous 90’s game enjoyed by the Kids back then, as well as the Kids at heart in the present.<br>
+        *100 % Combed Cotton<br>
+        COLD WASH ONLY<br>
+        DO NOT TUBLE DRY<br>
+        *Machine wash cold<br>
+        *Dry cleanable<br>
+        *Do not iron on print<br>
+        *Do not bleach<br>
+        *Do not wring<br>
+        *Do not tumble dry<br></p>
+
+    </div>
+
+  </div>
+  
 </div>
+
 {% endblock %}
