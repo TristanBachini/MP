@@ -20,6 +20,9 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        db_table = 'sampleapp_item'
 
 
 class ShoppingCart(models.Model):
