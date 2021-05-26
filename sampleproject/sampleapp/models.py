@@ -8,14 +8,15 @@ from django.db.models.fields import Field
 
 class Type(models.Model):
     type = models.CharField(max_length=100, null=True)
+
     def __str__(self):
         return self.type
 
 
 class Item(models.Model):
     name = models.CharField(max_length=100, null=True)
-    item_type = models.ForeignKey(Type,on_delete=models.CASCADE,null=True)
-    price = models.FloatField(max_length=50, null=True)
+    item_type = models.ForeignKey(Type, on_delete=models.CASCADE, null=True)
+    price = models.CharField(max_length=50, null=True)
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
@@ -35,4 +36,3 @@ class ShoppingCart(models.Model):
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name + "'s shopping cart"
-

@@ -1,58 +1,71 @@
-{% extends 'sampleapp/submain.html' %}
-
-{% block content %}
-
-<form action="" method="post" id="reg-form">
-
-    {% csrf_token %}
-    <h3 style="color: white; margin-left: 2in;">Login</h3>
-    <div class="row">
-        <div class="col first-row" >
-            <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Enter Username" required>
-            <label for="floatingInput">Enter Username</label>
+{% extends 'sampleapp/submain.html' %} {% block content %}
+<div class="card" id="reg-form">
+  <div class="card-body">
+    <h3 style="color: white">Login to Vermin</h3>
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col">
+          <input
+            type="text"
+            name="username"
+            class="form-control"
+            id="floatingInput"
+            placeholder="Enter Username"
+            required
+          />
+          <label for="floatingInput">Enter Username</label>
         </div>
-    </div>
-    <div class="row">
-        <div class="col first-row" >
-            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Enter Password" required>
-            <label for="floatingPassword">Enter Password</label>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Enter Password"
+            required
+          />
+          <label for="floatingPassword">Enter Password</label>
         </div>
-    </div>
-
-    {% for message in messages %}
-        {% if message.tags == 'success' %}
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> {{message | striptags}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% else %}
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Error!</strong> {{message | striptags}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endif %}
-    {% endfor %}
-
-    <div>
-        <button type="submit" id="submit_button">Sign Up</button>
-        New to Vermin? <a href="{% url 'register' %}">Register here</a>
-    </div>
-
-
-    
-    
-
-</form>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-outline-success"
+        style="color: white"
+      >
+        Sign In
+      </button>
+      {% for message in messages %} {% if message.tags == 'success' %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> {{message | striptags}}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% else %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> {{message | striptags}}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endif %} {% endfor %}
+    </form>
+  </div>
+  <div class="card-body">
+    New to Vermin?
+    <a href="{% url 'register' %}"
+      ><button class="btn btn-outline-info">Register Here</button></a
+    >
+  </div>
+</div>
 
 {% endblock %}
