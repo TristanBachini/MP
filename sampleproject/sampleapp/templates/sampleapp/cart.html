@@ -11,6 +11,7 @@
         <th scope="col">Name</th>
         <th scope="col">Price</th>
         <th scope="col">Quantity</th>
+        <th scope="col">Size</th>
         <th colspan="2"></th>
       </tr>
     </thead>
@@ -26,6 +27,7 @@
         <td>{{c.item.clothing.name}}</td>
         <td>{{c.item.clothing.price}}</td>
         <td>{{c.item.quantity}}</td>
+        <td>{{c.item.size}}</td>
         <td>
           <a
             href="{% url 'update_item' c.item.id %}"
@@ -55,7 +57,7 @@
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">
+                  <h5 class="modal-title" id="exampleModalLabel" style="color: black;">
                     Remove to Cart Confirmation
                   </h5>
                   <button
@@ -65,7 +67,7 @@
                     aria-label="Close"
                   ></button>
                 </div>
-                <div class="modal-body text-start">
+                <div class="modal-body text-start" style="color: black;">
                   Are you sure you want to remove "{{c.item.clothing}}"?
                 </div>
                 <div class="modal-footer">
@@ -94,6 +96,33 @@
       </tr>
 
       {% endfor %}
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Total Price:</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>{{cum_price}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <a
+            href="{% url 'purchase_choice' %}"
+            type="button"
+            class="btn btn-outline-warning"
+          >
+            <i class="fas fa-minus-circle"></i>
+            Confirm Purchase
+          </a>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

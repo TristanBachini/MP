@@ -1,7 +1,11 @@
+from django import forms
 from django.db import models
+from django.db.models import fields
 from django.forms import ModelForm,TextInput, PasswordInput, CharField, HiddenInput,NumberInput
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import widgets
+from django.forms.widgets import Select
 from .models import *
 
 
@@ -29,4 +33,13 @@ class ShoppingCartForm(ModelForm):
             'user':  HiddenInput( attrs = {'type':'hidden'} ),
             'clothing':  HiddenInput( attrs = {'type':'hidden'} ),
             'quantity': NumberInput ( attrs = {'class':'form-control', 'min':'1'} ),
+            'size': Select(attrs={'class':'form-control', 'min':'1'})
+        }
+
+class PurchaseChoiceForm(ModelForm):
+    class Meta:
+        model = PurchaseChoice
+        fields = "__all__"
+        widgets = {
+            "choice": Select(attrs={'class':'form-control', 'min':'1'})
         }

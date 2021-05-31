@@ -114,7 +114,6 @@
   </div>
 </div>
 
-<<<<<<< HEAD
 <div class="shop">
   <table>
     <tr>
@@ -128,7 +127,9 @@
             class="card"
             style="width: 18rem; background-color: #070708"
           >
-            <img src="{{item.item.image.url}}" />
+          <a href="{% url 'products' item.item.id %}"
+          ><img src="{{item.item.image.url}}" width="100%"
+        /></a>
             <div class="card-body"></div>
             <center>
               <p class="card-text" style="color: white;">{{item.item.name}}</p>
@@ -149,214 +150,6 @@
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <form action="{% url 'add_to_cart' %}" method="post">
-=======
-<a id="goShop">
-  <div class="shop" id="goshop">
-    <div class="tabs">
-      <button
-        class="tablink"
-        onclick="openCity('Tops', this, 'red')"
-        id="defaultOpen"
-      >
-        Tops
-      </button>
-      <button class="tablink" onclick="openCity('Bottoms', this, 'green')">
-        Bottoms
-      </button>
-      <button class="tablink" onclick="openCity('Shoes', this, 'blue')">
-        Shoes
-      </button>
-      <button class="tablink" onclick="openCity('Accessories', this, 'orange')">
-        Oslo
-      </button>
-    </div>
-    <div class="tab-data"></div>
-    {% for item in itemsdict %} {% if item.item.item_type.type == "Tops" %}
-    <div id="Tops" class="tabcontent">
-      <table>
-        <tr>
-          <td>
-            <div
-              class="card"
-              style="width: 18rem; float: left; background-color: #070708"
-            >
-              <a href="{% url 'products' item.item.id %}"
-                ><img src="{{item.item.image.url}}" width="100%"
-              /></a>
-              <div class="card-body">
-                <p class="card-text">{{item.item.name}}</p>
-                <p class="card-text">{{item.item.price}}</p>
-                <button
-                  class="btn btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#add_to_cart_{{item.item.id}}"
-                >
-                  <i class="fas fa-shopping-cart" style="color: white"></i>
-                </button>
-
-                <div class="modal fade" id="add_to_cart_{{item.item.id}}">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <form action="{% url 'add_to_cart' %}" method="post">
-                        <div class="modal-body" style="color: black">
-                          Add to cart {{item.item.name}}? {% csrf_token %}
-                          {{item.form.user}} {{item.form.clothing}}
-                          <br /><br />
-                          <div class="row">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-4 text-center">Quantity:</div>
-                            <div class="col-sm-4">{{item.form.quantity}}</div>
-                            <div class="col-sm-2"></div>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button
-                            type="submit"
-                            class="btn btn-outline-success"
-                            data-bs-toggle="modal"
-                            data-bs-target="#"
-                          >
-                            <i class="fas fa-shopping-cart"></i> Add
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-outline-danger"
-                            data-bs-dismiss="modal"
-                          >
-                            <i class="fas fa-ban"></i> Cancel
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
-    {% elif item.item.item_type.type == "Bottoms" %}
-    <div id="Bottoms" class="tabcontent">
-      <table>
-        <tr>
-          <td>
-            <div
-              class="card"
-              style="width: 18rem; float: left; background-color: #070708"
-            >
-              <img src="{{item.item.image.url}}" />
-              <div class="card-body">
-                <p class="card-text">{{item.item.name}}</p>
-                <p class="card-text">{{item.item.price}}</p>
-                <button
-                  class="btn btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#add_to_cart_{{item.item.id}}"
-                >
-                  <i class="fas fa-shopping-cart" style="color: white"></i>
-                </button>
-
-                <div class="modal fade" id="add_to_cart_{{item.item.id}}">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-body" style="color: black">
-                        Add to cart {{item.item.name}}?
-                      </div>
-                      <div class="modal-footer">
-                        <a href="" class="btn btn-outline-warning"
-                          ><i class="fas fa-shopping-cart"></i> Add</a
-                        >
-                        <button
-                          type="button"
-                          class="btn btn-outline-danger"
-                          data-bs-dismiss="modal"
-                        >
-                          <i class="fas fa-ban"></i> Cancel
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
-    {% elif item.item.item_type.type == "Shoes" %}
-    <div id="Shoes" class="tabcontent">
-      <table>
-        <tr>
-          <td>
-            <div
-              class="card"
-              style="width: 18rem; float: left; background-color: #070708"
-            >
-              <img src="{{item.item.image.url}}" />
-              <div class="card-body">
-                <p class="card-text">{{item.item.name}}</p>
-                <p class="card-text">{{item.item.price}}</p>
-                <button
-                  class="btn btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#add_to_cart_{{item.item.id}}"
-                >
-                  <i class="fas fa-shopping-cart" style="color: white"></i>
-                </button>
-
-                <div class="modal fade" id="add_to_cart_{{item.item.id}}">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-body" style="color: black">
-                        Add to cart {{item.item.name}}?
-                      </div>
-                      <div class="modal-footer">
-                        <a href="" class="btn btn-outline-warning"
-                          ><i class="fas fa-shopping-cart"></i> Add</a
-                        >
-                        <button
-                          type="button"
-                          class="btn btn-outline-danger"
-                          data-bs-dismiss="modal"
-                        >
-                          <i class="fas fa-ban"></i> Cancel
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
-    {% elif item.item.item_type.type == "Accessories" %}
-    <div id="Accessories" class="tabcontent">
-      <table>
-        <tr>
-          <td>
-            <div
-              class="card"
-              style="width: 18rem; float: left; background-color: #070708"
-            >
-              <img src="{{item.item.image.url}}" />
-              <div class="card-body">
-                <p class="card-text">{{item.item.name}}</p>
-                <p class="card-text">{{item.item.price}}</p>
-                <button
-                  class="btn btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#add_to_cart_{{item.item.id}}"
-                >
-                  <i class="fas fa-shopping-cart" style="color: white"></i>
-                </button>
-
-                <div class="modal fade" id="add_to_cart_{{item.item.id}}">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
->>>>>>> refs/remotes/origin/master
                       <div class="modal-body" style="color: black">
                         Add to cart {{item.item.name}}?
                         {% csrf_token %}
@@ -367,6 +160,8 @@
                             <div class="col-sm-2"></div>
                             <div class="col-sm-4 text-center">Quantity:</div>
                             <div class="col-sm-4">{{item.form.quantity}}</div>
+                            <div class="col-sm-4 text-center" style="margin-left: .85in; margin-top: 0.3in;">Size:</div>
+                            <div class="col-sm-4" style="margin-top: 0.3in;">{{item.form.size}}</div>
                             <div class="col-sm-2"></div>
                         </div>
                       </div>
@@ -387,7 +182,6 @@
                 </div>
               </div>
             </div>
-<<<<<<< HEAD
           </div>
         </td>
         
@@ -396,15 +190,6 @@
     {% endfor %}
   </tr>
   </table>
-=======
-          </td>
-        </tr>
-      </table>
-    </div>
-    {% endif %} {% endfor %}
-  </div>
-</a>
->>>>>>> refs/remotes/origin/master
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 

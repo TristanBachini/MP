@@ -27,7 +27,10 @@ def homepage(request):
 
 def products(request, pk):
     item = Item.objects.get(id=pk)
-    data = {"item": item}
+    shoppingcartform = ShoppingCartForm({"user": request.user.id, "clothing": item.id, "quantity": 1})
+    data = {"item": item, "shoppingcartform":shoppingcartform}
+
+    
     return render(request, 'sampleapp/products.html', data)
 
 
@@ -95,11 +98,14 @@ def logout_page(request):
 
 @login_required(login_url='/login')
 def add_to_cart(request):
-    form = ShoppingCartForm(request.POST)
-    print(form)
-    if(form.is_valid()):
-        form.save()
-        return redirect('/cart')
+    if(request.user.is_superuser):
+        return render(request,'sampleapp/homepage.html')
+    else:
+        form = ShoppingCartForm(request.POST)
+        print(form)
+        if(form.is_valid()):
+            form.save()
+            return redirect('/cart')
 
 
 @login_required(login_url='/login')
@@ -140,3 +146,17 @@ def delete_item(request, pk):
     shoppingcart = ShoppingCart.objects.get(id=pk)
     shoppingcart.delete()
     return redirect("/cart")
+
+@login_required(login_url='login')
+def purchase_choice(request):
+    purchasechoiceform = PurchaseChoiceForm()
+    data = {"purchasechoiceform":purchasechoiceform}
+    return render(request, "sampleapp/modeofpayment.html",data)
+
+@login_required(login_url='login')
+def purchase_step2(request):
+
+    if(request.POST.get('choice')=="3" or request.POST.get('choice')=="2"):
+        return render(request, "sampleapp/creditdebit.html")
+    if(request.POST.get('choice')=="4"):
+        return render(request, "sampleapp/cashondelivery.html")
