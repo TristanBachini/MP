@@ -128,6 +128,9 @@ def cart(request):
         form = ShoppingCartForm(
             {"user": item.user.id, "clothing": item.clothing.id, "quantity": item.quantity})
         cart.append({"item": item, "form": form})
+    
+    cum_price_decimal = "{:.2f}".format(cum_price)
+    cum_price = float(cum_price_decimal)
 
     data = {"cart": cart, "cum_price": cum_price, "item_count": item_count}
     return render(request, 'sampleapp/cart.html', data)
@@ -187,6 +190,9 @@ def finalize(request):
             form = ShoppingCartForm(
                 {"user": item.user.id, "clothing": item.clothing.id, "quantity": item.quantity})
             cart.append({"item": item, "form": form})
+        
+        cum_price_decimal = "{:.2f}".format(cum_price)
+        cum_price = float(cum_price_decimal)
 
         region = str(shippingaddressform.cleaned_data.get('region'))
         regionbill = str(billingaddressform.cleaned_data.get('region'))
@@ -218,6 +224,12 @@ def finalize(request):
             email.send()
             items = ShoppingCart.objects.filter(user=request.user).order_by('id')
             for item in items:
+                order = OrderForm({"user":request.user.id,"shoppingcart":item.clothing.name,"date_ordered":datetime.date.today(),
+                "quantity":item.quantity, "price":item.clothing.price})
+                if(order.is_valid()):
+                    order.save()
+
+            for item in items:
                 item.delete()
 
             items = Item.objects.all()
@@ -243,6 +255,8 @@ def finalize(request):
             cart.append({"item": item, "form": form})
         
         cum_price +=50
+        cum_price_decimal = "{:.2f}".format(cum_price)
+        cum_price = float(cum_price_decimal)
 
         region = str(shippingaddressform.cleaned_data.get('region'))
         shippingaddress = shippingaddressform.cleaned_data.get('street2') + " " + shippingaddressform.cleaned_data.get('street1') + ", " + shippingaddressform.cleaned_data.get('city') + ", " + region + ", " + shippingaddressform.cleaned_data.get('postcode')
@@ -274,12 +288,20 @@ def confirm_cod(request):
     pdf = generate_pdf_cod(request).getvalue()
     email.attach("receipt.pdf",pdf,'application/pdf')
     email.send()
+
     items = ShoppingCart.objects.filter(user=request.user).order_by('id')
+    for item in items:
+        order = OrderForm({"user":request.user.id,"shoppingcart":item.clothing.name,"date_ordered":datetime.date.today(),
+        "quantity":item.quantity, "price":item.clothing.price})
+        if(order.is_valid()):
+            order.save()
+
     for item in items:
         item.delete()
 
     items = Item.objects.all()
     itemsdict = []
+    
 
     for item in items:
         form = ShoppingCartForm(
@@ -304,6 +326,9 @@ def generate_pdf_cod(request):
         cart.append({"item": item, "form": form})
     cum_price +=50
     shippingaddress = request.GET.get('ship')
+    cum_price_decimal = "{:.2f}".format(cum_price)
+    cum_price = float(cum_price_decimal)
+
     content = {"cart": cart, "cum_price": cum_price, "item_count": item_count, "shippingaddress":shippingaddress}
     
     response = HttpResponse(content_type='application/pdf')
@@ -329,6 +354,9 @@ def generate_pdf(request):
         form = ShoppingCartForm(
             {"user": item.user.id, "clothing": item.clothing.id, "quantity": item.quantity})
         cart.append({"item": item, "form": form})
+    
+    cum_price_decimal = "{:.2f}".format(cum_price)
+    cum_price = float(cum_price_decimal)
 
     shippingaddress = request.GET.get('ship')
     billingaddress = request.GET.get('bill')
@@ -343,3 +371,15 @@ def generate_pdf(request):
 
     if not pdf.err:
         return response
+
+@login_required(login_url='login') 
+def orders(request):
+    orders = Order.objects.filter(user=request.user).order_by('id')
+    history = []
+
+    for order in orders:
+        history.append({"order": order})
+
+    data = {"history": history}
+
+    return render(request, 'sampleapp/history.html', data)

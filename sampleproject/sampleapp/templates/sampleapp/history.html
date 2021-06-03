@@ -1,0 +1,28 @@
+{% extends 'sampleapp/submain.html' %} {% block content %} {% load static %}
+
+<div class="container">
+  <h1>Your Order History</h1>
+  <br /><br />
+  <table class="table table-dark table-striped table-hover" >
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Date Purchased</th>
+        <th scope="col">Price per item</th>
+        <th scope="col">Quantity purchased</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for h in history %}
+      <tr>
+        <td style="color: white;">{{h.order.shoppingcart}}</td>
+        <td style="color: white;">{{h.order.date_ordered}}</td>
+        <td style="color: white;">{{h.order.price}}</td>
+        <td style="color: white;">{{h.order.quantity}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

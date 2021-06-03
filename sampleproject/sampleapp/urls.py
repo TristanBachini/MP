@@ -21,4 +21,6 @@ urlpatterns = [
     path('purchase-step2/', views.purchase_step2, name="purchase_step2"),
     path('finalize-payment/', views.finalize, name="finalize"),
     path('confirm-cod/', views.confirm_cod, name="confirm_cod"),
+
+    path('orders/', views.orders, name="orders"),
 ]

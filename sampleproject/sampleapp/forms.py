@@ -79,3 +79,15 @@ class ShippingAddressForm(ModelForm):
             'street2':TextInput(attrs={'class':'form-control', 'placeholder':'Block No. Lot No.', 'aria-label':'Email','required':True}),
             'postcode':TextInput(attrs={'class':'form-control', 'placeholder':'Ex: 1707', 'aria-label':'Email','required':True}),
         }
+
+class OrderForm(ModelForm):
+    class Meta:
+        model = Order
+        fields = "__all__"
+        widgets = {
+            'user':  HiddenInput( attrs = {'type':'hidden'} ),
+            'shoppingcart':  HiddenInput( attrs = {'type':'hidden'} ),
+            'date_ordered':  HiddenInput( attrs = {'type':'hidden'} ),
+            'quantity':  HiddenInput( attrs = {'type':'hidden'} ),
+            'price':  HiddenInput( attrs = {'type':'hidden'} ),
+        }

@@ -4,7 +4,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models.deletion import CASCADE
 from django.db.models.fields import Field
 from django.db.models.fields.related import ForeignKey
-
+import datetime
 # Create your models here.
 
 
@@ -24,7 +24,7 @@ class Size(models.Model):
 class Item(models.Model):
     name = models.CharField(max_length=100, null=True)
     item_type = models.ForeignKey(Type, on_delete=models.CASCADE, null=True)
-    price = models.IntegerField( null=True)
+    price = models.FloatField( null=True)
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
@@ -40,7 +40,9 @@ class PurchaseChoice(models.Model):
     choice = models.ForeignKey(PurchaseSelect,on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.choice 
+        return self.choice
+
+
 
 class ShoppingCart(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -91,5 +93,12 @@ class Address(models.Model):
     street1 = models.CharField(max_length=200, null=True,)
     street2 = models.CharField(max_length=200, null=True, blank=True)
     postcode = models.CharField(max_length=10,  null=True, blank=True)
+
+class Order(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.SET_NULL, null=True)
+    shoppingcart = models.CharField(max_length=100,null=True)
+    date_ordered = models.DateField(default=datetime.date.today)
+    quantity = models.IntegerField(null=True)
+    price = models.FloatField(null=True)
 
 
