@@ -1,0 +1,20 @@
+{% extends 'sampleapp/main.html' %} {% block content %} {% load static %}
+
+<center>
+    <div class="choiceform">
+        <form method="post" action="{% url 'purchase_step2' %}">
+            {% csrf_token %}
+            {{purchasechoiceform.choice}}
+
+            <div>
+                <button type="submit" id="submit_button">Next</button>
+            </div>
+        </form>
+    </div>
+</center>
+
+
+
+
+
+{% endblock %}

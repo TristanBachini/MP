@@ -5,3 +5,11 @@ from .models import *
 admin.site.register(Item)
 admin.site.register(ShoppingCart)
 admin.site.register(Type)
+admin.site.register(Size)
+admin.site.register(PurchaseSelect)
+admin.site.register(Day)
+admin.site.register(Month)
+admin.site.register(Year)
+admin.site.register(Region)
+
+

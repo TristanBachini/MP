@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sampleapp',
-    'dal',
-    'dal_select2',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +78,7 @@ WSGI_APPLICATION = 'sampleproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'vermin',
+        'NAME': 'verminonlineshop',
         'USER': 'root',
         'PASSWORD': os.environ.get("DATABASE_PASSWORD"),
         'PORT': 3306,

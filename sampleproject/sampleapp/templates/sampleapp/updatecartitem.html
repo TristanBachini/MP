@@ -1,36 +1,42 @@
-{% extends 'sampleapp/submain.html' %} {% block content %}
+{% extends 'sampleapp/submain.html' %}
+{% block content %}
 
 <div class="container">
-  <h1>Update Cart Item</h1>
-  <br />
+    <h1>Update Cart Item</h1>
+    <br>
 
-  <div class="card">
-    <div class="card-header">Update Cart Item</div>
-    <div class="card-body">
-      <form action="" method="post">
-        <!-- input fields insert -->
-        <div class="modal-body text-start">
-          {% csrf_token %} {{cartitemform.user}} {{cartitemform.clothing}}
-
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4 text-center">Change Quantity:</div>
-            <div class="col-sm-4">{{cartitemform.quantity}}</div>
-            <div class="col-sm-2"></div>
-          </div>
+    <div class="card">
+        <div class="card-header">
+            Update Cart Item
         </div>
+        <div class="card-body">
+            <form action="" method="post">
+                <!-- input fields insert -->
+                <div class="modal-body text-start">
+                    {% csrf_token %}
+                    {{cartitemform.user}}
+                    {{cartitemform.clothing}}
 
-        <button type="submit" class="btn btn-outline-success">
-          <i class="fas fa-edit"></i>
-          Update Cart
-        </button>
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-4 text-center">Change Quantity:</div>
+                        <div class="col-sm-4">{{cartitemform.quantity}}</div>
+                        <div class="col-sm-2"></div>
+                    </div>
 
-        <a href="{% url 'cart' %}" class="btn btn-outline-danger">
-          <i class="fas fa-ban"></i>
-          Cancel
-        </a>
-      </form>
+                </div>
+                
+                <button type="submit" class="btn btn-outline-success">
+                    <i class="fas fa-edit"></i>
+                    Update Cart
+                </button>
+
+                <a href="{% url 'homepage' %}" class="btn btn-outline-danger">
+                    <i class="fas fa-ban"></i>
+                    Cancel
+                </a>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 {% endblock content %}

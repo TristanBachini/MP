@@ -1,0 +1,66 @@
+{% extends 'sampleapp/submain.html' %} {% block content %} {% load static %}
+
+<p style="color: black;"><h1>Your Order</h1></p>
+<br><br>
+Payment Information:
+Shipping address:
+{{shippingaddress}}
+<br><br>
+Cash on delivery (Please prepare exact amount)
+<br><br>
+<p><a href="{% url 'purchase_choice' %}">Edit payment details</a></p>
+<div class="container">
+    <p><h1>Your Order</h1> Need to make changes? <a href="{% url 'cart' %}">Go back to cart</a></p>
+    <br /><br />
+    <strong> Items: </strong> {{item_count}} <br /><br />
+    <table class="table table-dark table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Size</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in cart %}
+        <tr>
+          <td style="text-align: center;">{{c.item.clothing.name}}</td>
+          <td>{{c.item.clothing.price}}</td>
+          <td>{{c.item.quantity}}</td>
+          <td>{{c.item.size}}</td>
+        </tr>
+  
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td>Delivery fee</td>
+            <td>P50.00</td>
+            <td></td>
+        </tr>
+        <br><br><br>
+        <tr>
+          <td></td>
+          <td>Total Price:</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>{{cum_price}}</td>
+          <td></td>
+          <td>
+            <form action="{% url 'confirm_cod' %}" method="GET">
+              <button type="submit"><i class="fas fa-minus-circle"></i>
+                <input name="ship" value="{{shippingaddress}}" type="hidden">
+                Confirm 
+              </button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+
+
