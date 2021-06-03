@@ -2,42 +2,29 @@
 
 {% block content %}
 {%  load static  %}
-
-<br>
-<br>
-<br>
-<br>
-<div class="about-us" style="color: white; background-color: rgba(0,0,0,1); padding-top: 2in; padding-bottom: 8in; margin-left: 2in; margin-right: 2in; padding-left: 1.5in; padding-right: 1.5in;">
-    <div class="about-us-text" style="margin-left: 1in; margin-right: 1in; ">
-        <p class="indent"><h3 style="font-family: 'Shadows Into Light', cursive;"> About us:</h3></p>
-        <p class="indent"> Vermin clothing brand is a local Filipino clothing brand influenced by the ever-growing mix of Asian and Popular culture. 
-            While there tends to be sudden shifts in trends of popular cultures among millennials and Gen Z alike, Vermin brand’s sharp styles 
-            and trendy fits are able to keep up.  
-        </p>
-        <br>
-        <p class="indent"> Vermin brand started from the brilliant mind of Edrian P. Timan. Together with like-minded friends, vermin was born. It features
-            themes from Asian cultures, etched into the finest cloth at very affordable prices. No matter the fit, slap on any piece of Vermin 
-            product, and get ready to turn some heads.  
-        </p>
-        <div class="owner" style="width: 3in; float: left; margin-top: .7in;">
-            <img src="{% static 'sampleapp/images/owner.JPG' %}" style="width: 100%;">
-            <div class="bottom-right" style="color: black; font-family: 'Shadows Into Light', cursive;">c.2020, Edrian Timan.</div>
+<div style="font-family: Helvetica, sans-serif;padding: 5%;width: 100%; font-size: 20px;background-color: rgba(0, 0, 0, 0.25);" >
+    <div class="about-us" style="color: white">
+        <div class="about-us-text" style="padding: 3px; width: 100%;">
+            <p class="indent"><h3> About us:</h3></p>
+            <p class="indent"> Vermin clothing brand is a local Filipino clothing brand influenced by the ever-growing mix of Asian and Popular culture. While there tends to be sudden shifts in trends of popular cultures among millennials and Gen Z alike, Vermin brand’s sharp styles and trendy fits are able to keep up.  
+            </p>
+            <br>
+            <p class="indent"> Vermin brand started from the brilliant mind of Edrian P. Timan. Together with like-minded friends, Vermin was born. It features themes from Asian cultures, etched into the finest cloth at very affordable prices. No matter the fit, slap on any piece of Vermin product, and get ready to turn some heads.  
+            </p>
         </div>
-        <div class="owner" style="width: 3in; float: right; margin-top: 1.6in; margin-left: .7in;">
-            <img src="{% static 'sampleapp/images/belair.jpg' %}" style="width: 100%;">
-            <div class="bottom-right" style="color: white; font-family: 'Shadows Into Light', cursive;">Chamber Belair, Santa Rosa Laguna</div>
-        </div>
+        <div style=" display: flex;padding: 20px;">
+            <div style="flex: 1;width: 50%;padding: 20px; ">
+              <img src="{% static 'sampleapp/images/owner.JPG' %}" style="width: 100%;">
+              <div style="color: white; font-family: 'Shadows Into Light', cursive; text-align: right;">c.2020, Edrian Timan.</div>
+            </div>
+            <div style="flex: 1;width: 50%;padding: 20px; ">
+                <img src="{% static 'sampleapp/images/belair.jpg' %}" style="width: 100%;">
+                <div style="color: white; font-family: 'Shadows Into Light', cursive;">Chamber Belair, Santa Rosa Laguna</div>
+            </div>
+            
+        </div>        
     </div>
-    
-
-
-    
-
-    
-
-
 </div>
-
 
 
 {% endblock %}
