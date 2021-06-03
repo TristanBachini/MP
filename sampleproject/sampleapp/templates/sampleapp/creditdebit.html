@@ -3,7 +3,50 @@
 
 <center>
     <div class="form" style="padding: 2in; margin: 2in; color: white;">
-        This is credit debit form
+        <form action="{% url 'finalize' %}"method="post">
+            {% csrf_token %}
+            <p><h1 style="color: black;"> Card Details </h1></p>
+            <p style="color: black;">Card Number</p>
+            {{creditcardform.cardnumber}}
+            <p style="color: black;">Card Pin</p>
+            {{creditcardform.cardpin}}
+            <p style="color: black;">Month</p>
+            {{creditcardform.cardmonth}}
+            <p style="color: black;">Day</p>
+            {{creditcardform.cardday}}
+            <p style="color: black;">Year</p>
+            {{creditcardform.cardyear}}
+            <br><br><br>
+            <p><h1 style="color: black;"> Billing Address </h1></p>
+            <p style="color: black;">Street Address 1</p>
+            {{billingaddressform.street1}}
+            <p style="color: black;">Street Address 2</p>
+            {{billingaddressform.street2}}
+            <p style="color: black;">City</p>
+            {{billingaddressform.city}}
+            <p style="color: black;">Region</p>
+            {{billingaddressform.region}}
+            <p style="color: black;">Post Code</p>
+            {{billingaddressform.postcode}}
+            <br><br><br>
+            <div class="shipping-address">
+                <p><h1 style="color: black;"> Shipping Address </h1></p>
+                <p style="color: black;">Street Address 1</p>
+                {{shippingaddressform.street1}}
+                <p style="color: black;">Street Address 2</p>
+                {{shippingaddressform.street2}}
+                <p style="color: black;">City</p>
+                {{shippingaddressform.city}}
+                <p style="color: black;">Region</p>
+                {{shippingaddressform.region}}
+                <p style="color: black;">Post Code</p>
+                {{shippingaddressform.postcode}}
+            </div>
+            
+            <div>
+                <button type="submit" id="submit_button">Next</button>
+            </div>
+        </form>
     </div>
 </center>
 

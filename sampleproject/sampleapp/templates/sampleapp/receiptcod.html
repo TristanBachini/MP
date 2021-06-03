@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+</head>
+<body>
+    
+<p style="color: black;"><h1>Your Order</h1></p>
+<br><br>
+Payment Information:
+Cash on Delivery (Please prepare exact amount)
+<br><br>
+<div class="container">
+    <p><h1>Order Summary</h1></p>
+    <br /><br />
+    <strong> Items: </strong> {{item_count}} <br /><br />
+    <table class="table table-dark table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Size</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in cart %}
+        <tr>
+          <td>{{c.item.clothing.name}}</td>
+          <td>{{c.item.clothing.price}}</td>
+          <td>{{c.item.quantity}}</td>
+          <td>{{c.item.size}}</td>
+        </tr>
+  
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td>Delivery fee</td>
+            <td>P50.00</td>
+            <td></td>
+        </tr>
+          <td></td>
+          <td>Total Price:</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>{{cum_price}}</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
+
+
+

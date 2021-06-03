@@ -6,8 +6,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage, send_mail
 from django.conf import settings
-from dal import autocomplete
 from .forms import *
+
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 
 # Create your views here.
 
@@ -56,10 +58,7 @@ def register(request):
 
             email.content_subtype = 'html'
             email.send()
-
-            print(request.POST.get('email'))
             form.save()
-            print(request)
             messages.success(request, "Account was created for " +
                              form.cleaned_data.get("username"))
 
@@ -99,7 +98,16 @@ def logout_page(request):
 @login_required(login_url='/login')
 def add_to_cart(request):
     if(request.user.is_superuser):
-        return render(request,'sampleapp/homepage.html')
+        items = Item.objects.all()
+        itemsdict = []
+
+        for item in items:
+            form = ShoppingCartForm(
+                {"user": request.user.id, "clothing": item.id, "quantity": 1})
+            itemsdict.append({"item": item, "form": form})
+
+        data = {"itemsdict": itemsdict}
+        return render(request, 'sampleapp/homepage.html', data)
     else:
         form = ShoppingCartForm(request.POST)
         print(form)
@@ -128,17 +136,14 @@ def cart(request):
 @login_required(login_url='login')
 def update_item(request, pk):
     cartitem = ShoppingCart.objects.get(id=pk)
-    cartitemform = ShoppingCartForm(instance=cartitem)
+    cartitemform = ShoppingCartForm(request.POST, instance=cartitem)
+    if(cartitemform.is_valid()):
+        
+        cartitemform.save()
+        
+    
+    return redirect("/cart")
 
-    if(request.method == 'POST'):
-        cartitem = ShoppingCart.objects.get(id=pk)
-        form = ShoppingCartForm(request.POST, instance=cartitem)
-        if(form.is_valid()):
-            form.save()
-            return redirect("/cart")
-
-    data = {"cartitemform": cartitemform}
-    return render(request, "sampleapp/updatecartitem.html", data)
 
 
 @login_required(login_url='login')
@@ -153,10 +158,188 @@ def purchase_choice(request):
     data = {"purchasechoiceform":purchasechoiceform}
     return render(request, "sampleapp/modeofpayment.html",data)
 
-@login_required(login_url='login')
+@login_required(login_url='login')  
 def purchase_step2(request):
-
     if(request.POST.get('choice')=="3" or request.POST.get('choice')=="2"):
-        return render(request, "sampleapp/creditdebit.html")
+        creditcardform = CreditCardForm()
+        billingaddressform = BillingAddressForm()
+        shippingaddressform = ShippingAddressForm()
+        data = {"creditcardform":creditcardform, "billingaddressform":billingaddressform, "shippingaddressform":shippingaddressform}
+        return render(request, "sampleapp/creditdebit.html",data)
     if(request.POST.get('choice')=="4"):
-        return render(request, "sampleapp/cashondelivery.html")
+        shippingaddressform = ShippingAddressForm()
+        data = {"shippingaddressform":shippingaddressform}
+        return render(request, "sampleapp/cashondelivery.html",data)
+
+@login_required(login_url='login') 
+def finalize(request):
+    billingaddressform = BillingAddressForm(request.POST)
+    shippingaddressform =ShippingAddressForm(request.POST)
+    creditcardform = CreditCardForm(request.POST)
+    if(shippingaddressform.is_valid() and billingaddressform.is_valid() and creditcardform.is_valid()):
+        items = ShoppingCart.objects.filter(user=request.user).order_by('id')
+        cart = []
+        cum_price = 0
+        item_count = 0
+        for item in items:
+            cum_price = cum_price + (item.quantity * item.clothing.price)
+            item_count = item_count + item.quantity
+            form = ShoppingCartForm(
+                {"user": item.user.id, "clothing": item.clothing.id, "quantity": item.quantity})
+            cart.append({"item": item, "form": form})
+
+        region = str(shippingaddressform.cleaned_data.get('region'))
+        regionbill = str(billingaddressform.cleaned_data.get('region'))
+        cardnumber = str(creditcardform.cleaned_data.get('cardnumber'))[-4:]
+        
+        shippingaddress = shippingaddressform.cleaned_data.get('street2') + " " + shippingaddressform.cleaned_data.get('street1') + ", " + shippingaddressform.cleaned_data.get('city') + ", " + region + ", " + shippingaddressform.cleaned_data.get('postcode')
+        billingaddress = billingaddressform.cleaned_data.get('street2') + " " + billingaddressform.cleaned_data.get('street1') + ", " + billingaddressform.cleaned_data.get('city') + ", " + regionbill + ", " + billingaddressform.cleaned_data.get('postcode')
+        data = {"cart": cart, "cum_price": cum_price, "item_count": item_count, "shippingaddress":shippingaddress,"billingaddress":billingaddress, "cardnumber":cardnumber}
+
+
+        return render(request, "sampleapp/finalize.html",data)
+    elif(request.method == "GET"):
+
+            subject = "Order Details"
+            message = "<h1>Hello " + request.user.username +", good day!</h1> <br><br>Here is a summary of your order:"
+            from_email = settings.EMAIL_HOST_USER
+            recepient_list = [request.user.email]
+
+            email = EmailMessage(
+                subject,
+                message,
+                from_email,
+                recepient_list
+            )
+
+            email.content_subtype = 'html'
+            pdf = generate_pdf(request).getvalue()
+            email.attach("receipt.pdf",pdf,'application/pdf')
+            email.send()
+            items = ShoppingCart.objects.filter(user=request.user).order_by('id')
+            for item in items:
+                item.delete()
+
+            items = Item.objects.all()
+            itemsdict = []
+
+            for item in items:
+                form = ShoppingCartForm(
+                    {"user": request.user.id, "clothing": item.id, "quantity": 1})
+                itemsdict.append({"item": item, "form": form})
+
+            data = {"itemsdict": itemsdict}
+            return render(request, 'sampleapp/homepage.html', data)
+    elif(shippingaddressform.is_valid()):
+        items = ShoppingCart.objects.filter(user=request.user).order_by('id')
+        cart = []
+        cum_price = 0
+        item_count = 0
+        for item in items:
+            cum_price = cum_price + (item.quantity * item.clothing.price)
+            item_count = item_count + item.quantity
+            form = ShoppingCartForm(
+                {"user": item.user.id, "clothing": item.clothing.id, "quantity": item.quantity})
+            cart.append({"item": item, "form": form})
+        
+        cum_price +=50
+
+        region = str(shippingaddressform.cleaned_data.get('region'))
+        shippingaddress = shippingaddressform.cleaned_data.get('street2') + " " + shippingaddressform.cleaned_data.get('street1') + ", " + shippingaddressform.cleaned_data.get('city') + ", " + region + ", " + shippingaddressform.cleaned_data.get('postcode')
+
+        data = {"cart": cart, "cum_price": cum_price, "item_count": item_count, "shippingaddress":shippingaddress}
+
+        return render(request,'sampleapp/finalizecod.html',data)
+
+    else:
+        purchasechoiceform = PurchaseChoiceForm()
+        data = {"purchasechoiceform":purchasechoiceform}
+        return render(request, "sampleapp/modeofpayment.html",data)
+
+@login_required(login_url='login') 
+def confirm_cod(request):
+    subject = "Order Details"
+    message = "<h1>Hello " + request.user.username +", good day!</h1> <br><br>Here is a summary of your order:"
+    from_email = settings.EMAIL_HOST_USER
+    recepient_list = [request.user.email]
+
+    email = EmailMessage(
+        subject,
+        message,
+        from_email,
+        recepient_list
+    )
+
+    email.content_subtype = 'html'
+    pdf = generate_pdf_cod(request).getvalue()
+    email.attach("receipt.pdf",pdf,'application/pdf')
+    email.send()
+    items = ShoppingCart.objects.filter(user=request.user).order_by('id')
+    for item in items:
+        item.delete()
+
+    items = Item.objects.all()
+    itemsdict = []
+
+    for item in items:
+        form = ShoppingCartForm(
+            {"user": request.user.id, "clothing": item.id, "quantity": 1})
+        itemsdict.append({"item": item, "form": form})
+
+    data = {"itemsdict": itemsdict}
+    return render(request, 'sampleapp/homepage.html', data)
+
+
+def generate_pdf_cod(request):
+    template_path = 'sampleapp/receiptcod.html'
+    items = ShoppingCart.objects.filter(user=request.user).order_by('id')
+    cart = []
+    cum_price = 0
+    item_count = 0
+    for item in items:
+        cum_price = cum_price + (item.quantity * item.clothing.price)
+        item_count = item_count + item.quantity
+        form = ShoppingCartForm(
+            {"user": item.user.id, "clothing": item.clothing.id, "quantity": item.quantity})
+        cart.append({"item": item, "form": form})
+    cum_price +=50
+    shippingaddress = request.GET.get('ship')
+    content = {"cart": cart, "cum_price": cum_price, "item_count": item_count, "shippingaddress":shippingaddress}
+    
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="receiptcod.pdf'
+    template = get_template(template_path)
+    html = template.render(content)
+    pdf = pisa.CreatePDF(html, dest=response)
+
+    if not pdf.err:
+        return response
+
+    
+
+def generate_pdf(request):
+    template_path = 'sampleapp/receipt.html'
+    items = ShoppingCart.objects.filter(user=request.user).order_by('id')
+    cart = []
+    cum_price = 0
+    item_count = 0
+    for item in items:
+        cum_price = cum_price + (item.quantity * item.clothing.price)
+        item_count = item_count + item.quantity
+        form = ShoppingCartForm(
+            {"user": item.user.id, "clothing": item.clothing.id, "quantity": item.quantity})
+        cart.append({"item": item, "form": form})
+
+    shippingaddress = request.GET.get('ship')
+    billingaddress = request.GET.get('bill')
+    card = request.GET.get('card')
+    content = {"cart": cart, "cum_price": cum_price, "item_count": item_count, "shippingaddress":shippingaddress,"billingaddress":billingaddress,"card":card}
+    
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="receipt.pdf'
+    template = get_template(template_path)
+    html = template.render(content)
+    pdf = pisa.CreatePDF(html, dest=response)
+
+    if not pdf.err:
+        return response
