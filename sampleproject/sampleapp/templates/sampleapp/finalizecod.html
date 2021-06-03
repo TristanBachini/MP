@@ -3,6 +3,9 @@
 <p style="color: black;"><h1>Your Order</h1></p>
 <br><br>
 Payment Information:
+Shipping address:
+{{shippingaddress}}
+<br><br>
 Cash on delivery (Please prepare exact amount)
 <br><br>
 <p><a href="{% url 'purchase_choice' %}">Edit payment details</a></p>
@@ -13,7 +16,7 @@ Cash on delivery (Please prepare exact amount)
     <table class="table table-dark table-striped table-hover">
       <thead>
         <tr>
-          <th scope="col" style="float: left;">Name</th>
+          <th scope="col">Name</th>
           <th scope="col">Price</th>
           <th scope="col">Quantity</th>
           <th scope="col">Size</th>
