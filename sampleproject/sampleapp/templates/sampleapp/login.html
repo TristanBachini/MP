@@ -1,39 +1,41 @@
 {% extends 'sampleapp/submain.html' %} {% block content %}
-<div class="card" id="reg-form">
+
+<div class="card" id="reg-form" style="padding:5%">
   <div class="card-body">
     <h3 style="color: white">Login to Vermin</h3>
     <form action="" method="post">
       {% csrf_token %}
       <div class="row">
         <div class="col">
+          <label for="floatingInput">Enter Username</label>
           <input
             type="text"
             name="username"
             class="form-control"
             id="floatingInput"
-            placeholder="Enter Username"
+            placeholder="Username"
             required
           />
-          <label for="floatingInput">Enter Username</label>
         </div>
       </div>
       <div class="row">
         <div class="col">
+          <label for="floatingPassword">Enter Password</label>
           <input
             type="password"
             name="password"
             class="form-control"
             id="floatingPassword"
-            placeholder="Enter Password"
+            placeholder="********"
             required
-          />
-          <label for="floatingPassword">Enter Password</label>
+          />  
         </div>
       </div>
+      <br>
       <button
         type="submit"
-        class="btn btn-outline-success"
-        style="color: white"
+        class="btn btn-warning"
+        style="color: black"
       >
         Sign In
       </button>
@@ -63,7 +65,7 @@
   <div class="card-body">
     New to Vermin?
     <a href="{% url 'register' %}"
-      ><button class="btn btn-outline-info">Register Here</button></a
+      ><button class="btn btn-outline-warning">Register Here</button></a
     >
   </div>
 </div>
