@@ -2,37 +2,35 @@
 
 <form action="" method="post" id="reg-form">
   {% csrf_token %}
-  <h3 style="color: white; margin-left: 2in">
+  <center>
+    <h3 style="color: white">
     REGISTER AND BE A MEMBER OF VERMIN
-  </h3>
-  <br />
-  <br />
-  <br />
+    </h3>
+  </center>
+  
   <br />
 
-  <div class="row">
-    <div class="col first-row">Enter First Name: {{form.first_name}}</div>
-    <div class="col second-row">Enter Last Name: {{form.last_name}}</div>
+  <div class="row" style="margin-left: 15%;margin-right: 15%;">
+    <div class="col">Enter First Name: {{form.first_name}}</div>
+    <div class="col">Enter Last Name: {{form.last_name}}</div>
   </div>
   <br />
   <br />
-  <div class="row">
-    <div class="col first-row">Enter Username: {{form.username}}</div>
-    <div class="col second-row">Enter Email: {{form.email}}</div>
+  <div class="row" style="margin-left: 15%;margin-right: 15%;">
+    <div class="col">Enter Username: {{form.username}}</div>
+    <div class="col">Enter Email: {{form.email}}</div>
   </div>
   <br />
   <br />
-  <div class="row">
-    <div class="col first-row reg-pass">Enter Password: {{form.password1}}</div>
+  <div class="row" style="width:50%;margin-left: 15%;margin-right: 15%;">
+    <div class="col">Enter Password: {{form.password1}}</div>
   </div>
   <br />
-  <div class="row">
-    <div class="col first-row reg-pass">
+  <div class="row" style="width:50%;margin-left: 15%;margin-right: 15%;"> 
+    <div class="col">
       Confirm Password: {{form.password2}}
     </div>
   </div>
-  <br />
-  <br />
   <br />
   <br />
   {% if form.errors %} {% for key, value in form.errors.items %}
@@ -49,9 +47,10 @@
     ></button>
   </div>
   {% endfor %} {% endif %}
-  <div class="first-row">
+
+  <div style="width:50%;margin-left: 15.5%;margin-right: 15%;">
     <label
-      >Have an account?<a href="{% url 'login' %}"> login </a>instead</label
+      >Have an account?<a href="{% url 'login' %}"> Login </a>instead</label
     >
     <br />
     <input
@@ -65,7 +64,7 @@
     >
 
     <div>
-      <button type="submit" id="submit_button"></button>
+      <button type="submit" class="btn btn-warning">Submit</button>
     </div>
   </div>
 </form>
