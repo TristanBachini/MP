@@ -29,47 +29,66 @@
         <td>{{c.item.quantity}}</td>
         <td>{{c.item.size}}</td>
         <td>
-          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#edit_{{c.item.id}}">
+          <button
+            type="button"
+            class="btn btn-outline-warning"
+            data-bs-toggle="modal"
+            data-bs-target="#edit_{{c.item.id}}"
+          >
             <i class="fas fa-edit"></i> Edit
           </button>
-          <div class="modal fade" id="edit_{{c.item.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div
+            class="modal fade"
+            id="edit_{{c.item.id}}"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
             <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="color: black;">
+              <div class="modal-content" style="color: black">
                 <form action="{% url 'update_item' c.item.id %}" method="post">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Size and Item</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-start"  >
-                    {% csrf_token %}
-                    {{c.form.user}}
-                    {{c.form.clothing}}
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Edit Size and Item
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body text-start">
+                    {% csrf_token %} {{c.form.user}} {{c.form.clothing}}
 
                     <div class="row">
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-4 text-center">Change Quantity:</div>
-                        <div class="col-sm-4">{{c.form.quantity}}</div>
-                        <div class="col-sm-4 text-center">Change Size:</div>
-                        <div class="col-sm-4">{{c.form.size}}</div>
-                        <div class="col-sm-2"></div>
+                      <div class="col-sm-2"></div>
+                      <div class="col-sm-4 text-center">Change Quantity:</div>
+                      <div class="col-sm-4">{{c.form.quantity}}</div>
+                      <div class="col-sm-4 text-center">Change Size:</div>
+                      <div class="col-sm-4">{{c.form.size}}</div>
+                      <div class="col-sm-2"></div>
                     </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-success">
+                      <i class="fas fa-edit"></i>
+                      Confirm
+                    </button>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-success"> 
-                        <i class="fas fa-edit"></i> 
-                        Confirm
+                    <button
+                      type="button"
+                      class="btn btn-outline-danger"
+                      data-bs-dismiss="modal"
+                    >
+                      <i class="fas fa-ban"></i>
+                      Cancel
                     </button>
-            
-                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
-                        <i class="fas fa-ban"></i> 
-                        Cancel
-                    </button>
-                </div>
+                  </div>
                 </form>
+              </div>
             </div>
-            </div>
-        </div>
+          </div>
         </td>
         <td>
           <button
@@ -91,7 +110,11 @@
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel" style="color: black;">
+                  <h5
+                    class="modal-title"
+                    id="exampleModalLabel"
+                    style="color: black"
+                  >
                     Remove to Cart Confirmation
                   </h5>
                   <button
@@ -101,7 +124,7 @@
                     aria-label="Close"
                   ></button>
                 </div>
-                <div class="modal-body text-start" style="color: black;">
+                <div class="modal-body text-start" style="color: black">
                   Are you sure you want to remove "{{c.item.clothing}}"?
                 </div>
                 <div class="modal-footer">
@@ -150,7 +173,7 @@
           <a
             href="{% url 'purchase_choice' %}"
             type="button"
-            class="btn btn-outline-warning"
+            class="btn btn-outline-success"
           >
             <i class="fas fa-minus-circle"></i>
             Confirm Purchase

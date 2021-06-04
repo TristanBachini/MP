@@ -77,12 +77,13 @@ WSGI_APPLICATION = 'sampleproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'verminonlineshop',
-        'USER': 'root',
-        'PASSWORD': os.environ.get("DATABASE_PASSWORD"),
-        'PORT': 3306,
-        'HOST': '127.0.0.1',
+        'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'verminonlineshop',
+        'NAME': 'vermin',
+        'USER': 'postgres',
+        'PASSWORD': 'qlo0120',
+        'PORT': '5432',
+        # 'HOST': '127.0.0.1',
     }
 }
 
