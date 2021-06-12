@@ -4,7 +4,7 @@
   <p class="imgThumb">
     <img src="{% static 'sampleapp/images/GROUP.png' %}" style="width: 100%" />
     <span>
-      <a id="gtcButton" href="#goShop"
+      <a id="gtcButton" href="{% url 'collections' %}"
         ><input type="submit" value="Go straight to collections"
       /></a>
     </span>
@@ -110,85 +110,6 @@
         <source src="{% static 'sampleapp/images/verminvid1.mp4' %}"
         type=video/mp4>
       </video>
-    </div>
-  </div>
-</div>
-
-<a id="goShop"></a>
-<div class="album py-5">
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {% for item in itemsdict %}
-      <div class="col">
-        <div class="card shadow">
-          <img width="100%" src="{{item.item.image.url}}" />
-          <div id="cardbody" class="card-body border-dark">
-            <center>
-              <h5 class="card-text">{{item.item.name}}</h5>
-              <p class="card-text" style="color: white">
-                ₱ {{item.item.price}}
-              </p>
-              <button
-                class="btn btn-sm"
-                data-bs-toggle="modal"
-                data-bs-target="#add_to_cart_{{item.item.id}}"
-                style="color: white"
-              >
-                <i class="fas fa-shopping-cart" style="color: white"> </i> Add
-                to cart
-              </button>
-            </center>
-
-            <div class="modal fade" id="add_to_cart_{{item.item.id}}">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <form action="{% url 'add_to_cart' %}" method="post">
-                    <div class="modal-body" style="color: black">
-                      Add to cart {{item.item.name}}? {% csrf_token %}
-                      {{item.form.user}} {{item.form.clothing}}
-                      <br />
-                      <br />
-                      <div class="row">
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-4 text-center">Quantity:</div>
-                        <div class="col-sm-4">{{item.form.quantity}}</div>
-                        <div
-                          class="col-sm-4 text-center"
-                          style="margin-left: 0.85in; margin-top: 0.3in"
-                        >
-                          Size:
-                        </div>
-                        <div class="col-sm-4" style="margin-top: 0.3in">
-                          {{item.form.size}}
-                        </div>
-                        <div class="col-sm-2"></div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="submit"
-                        class="btn btn-outline-success"
-                        data-bs-toggle="modal"
-                        data-bs-target="#"
-                      >
-                        <i class="fas fa-shopping-cart"></i> Add
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-outline-danger"
-                        data-bs-dismiss="modal"
-                      >
-                        <i class="fas fa-ban"></i> Cancel
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
     </div>
   </div>
 </div>

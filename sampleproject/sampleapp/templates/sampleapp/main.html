@@ -138,22 +138,29 @@
         height: 40px;
       }
 
-      #cardbody{
+      #cardbody {
         background-color: black;
       }
 
-      .card-text{
+      .card-text {
         color: white;
       }
-
     </style>
   </head>
 
   <body id="homepageID">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid" id="navhead" style="background-color: #ffcc00; border-bottom: solid">
+      <div
+        class="container-fluid"
+        id="navhead"
+        style="background-color: #ffcc00; border-bottom: solid"
+      >
         <a class="navbar-brand" href="{% url 'homepage'  %}">
-          <img src="{% static 'sampleapp/images/VerminLogoFullCrop.jpg' %}" alt="logo" class="img-responsive" />
+          <img
+            src="{% static 'sampleapp/images/VerminLogoFullCrop.jpg' %}"
+            alt="logo"
+            class="img-responsive"
+          />
         </a>
         <button
           class="navbar-toggler"
@@ -164,7 +171,7 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-        <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -172,9 +179,9 @@
               <a
                 class="nav-link active"
                 aria-current="page"
-                href="{% url 'homepage'  %}"
+                href="{% url 'collections'  %}"
               >
-              Collections
+                Collections
               </a>
             </li>
             <li class="nav-item">
@@ -225,8 +232,14 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li style="margin-left: 10%">Welcome {{request.user}}</li>
                 <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="{% url 'cart' %}">Shopping Cart</a></li>
-                <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'cart' %}"
+                    >Shopping Cart</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'orders' %}">Orders</a>
+                </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
                   <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>

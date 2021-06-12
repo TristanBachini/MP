@@ -1,0 +1,21 @@
+{% extends 'sampleapp/main.html' %} {% block content %} {% load static %}
+<div class="container">
+  <div class="row">
+    {% for item in itemsdict %}
+    <div class="col">
+      <a href="{% url 'products' item.item.id %}" class="">
+        <img
+          src="{{ item.item.image.url }}"
+          style="margin-top: 50%; width: 100%"
+        />
+      </a>
+      <hr />
+      <center>
+        <h5>{{item.item.name}}</h5>
+        <h6>₱ {{item.item.price}}</h6>
+      </center>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
