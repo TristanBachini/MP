@@ -120,7 +120,7 @@ def add_to_cart(request):
             itemsdict.append({"item": item, "form": form})
 
         data = {"itemsdict": itemsdict}
-        return render(request, 'sampleapp/homepage.html', data)
+        return render(request, 'sampleapp/collections.html', data)
     else:
         form = ShoppingCartForm(request.POST)
         print(form)
