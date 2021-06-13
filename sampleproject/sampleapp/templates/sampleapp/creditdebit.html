@@ -98,30 +98,30 @@
 
         {% csrf_token %}
         <div class="form-floating mb-3">
-          {{billingaddressform.street1}}
+          {{shippingaddressform.street1}}
           <label for="street1">Street Address 1</label>
         </div>
         <div class="form-floating mb-3">
-          {{billingaddressform.street2}}
+          {{shippingaddressform.street2}}
           <label for="street2">Street Address 2</label>
         </div>
 
         <div class="row">
           <div class="col">
             <div class="form-floating mb-3">
-              {{billingaddressform.city}}
+              {{shippingaddressform.city}}
               <label for="city">City</label>
             </div>
           </div>
           <div class="col">
             <div class="form-floating mb-3">
-              {{billingaddressform.region}}
+              {{shippingaddressform.region}}
               <label for="region">Region</label>
             </div>
           </div>
           <div class="col">
             <div class="form-floating mb-3">
-              {{billingaddressform.postcode}}
+              {{shippingaddressform.postcode}}
               <label for="postcode">Post Code</label>
             </div>
           </div>

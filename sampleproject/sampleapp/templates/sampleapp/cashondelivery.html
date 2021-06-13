@@ -1,7 +1,66 @@
 {% extends 'sampleapp/main.html' %} {% block content %} {% load static %}
 
+<form action="{% url 'finalize' %}" method="post">
+    <center>
+        <div
+        class="card"
+        style="background-color: #242424; margin: 10% 5% 0 5%; border-radius: 5%;
+        width: 25%;"
+        >
+        <div class="card-body">
+          <center>
+            <h1 class="card-title" style="color: #ffcc00">Shipping Address</h1>
+          </center>
+          <hr style="color: #ffcc00" />
+  
+          {% csrf_token %}
+          <div class="form-floating mb-3">
+            {{shippingaddressform.street1}}
+            <label for="street1">Street Address 1</label>
+          </div>
+          <div class="form-floating mb-3">
+            {{shippingaddressform.street2}}
+            <label for="street2">Street Address 2</label>
+          </div>
+  
+          <div class="row">
+            <div class="col">
+              <div class="form-floating mb-3">
+                {{shippingaddressform.city}}
+                <label for="city">City</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-floating mb-3">
+                {{shippingaddressform.region}}
+                <label for="region">Region</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-floating mb-3">
+                {{shippingaddressform.postcode}}
+                <label for="postcode">Post Code</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </center>
 
-<center>
+    <center>
+      <button
+        class="btn btn-outline-success"
+        type="submit"
+        id="submit_button"
+        style="margin-top: 1%"
+      >
+        <i class="fas fa-check-circle"></i>
+        Finalize Payment
+      </button>
+    </center>
+</form>
+<!-- <center>
     <div class="form" style="padding: 2in; margin: 2in; color: white;">
         <form action="{% url 'finalize' %}"method="post">
             {% csrf_token %}
@@ -26,7 +85,7 @@
             </div>
         </form>
     </div>
-</center>
+</center> -->
 
 
 {% endblock %}

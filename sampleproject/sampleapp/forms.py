@@ -80,11 +80,11 @@ class ShippingAddressForm(ModelForm):
         model = Address
         fields = "__all__"
         widgets = {
-            'city': TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex: Paranaque city', 'aria-label': 'Email', 'required': True}),
-            'region': Select(attrs={'class': 'form-control', 'placeholder': '', 'aria-label': 'Email', 'required': True}),
-            'street1': TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex:  123 Moon Street, West Village, Barangay Moon,', 'aria-label': 'Email', 'required': True}),
-            'street2': TextInput(attrs={'class': 'form-control', 'placeholder': 'Block No. Lot No.', 'aria-label': 'Email', 'required': True}),
-            'postcode': TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex: 1707', 'aria-label': 'Email', 'required': True}),
+            'city': TextInput(attrs={'class': 'form-control', 'id': 'city', 'placeholder': 'Ex: Paranaque city', 'aria-label': 'Email', 'required': True}),
+            'region': Select(attrs={'class': 'form-control', 'id': 'region', 'placeholder': '', 'aria-label': 'Email', 'required': True}),
+            'street1': TextInput(attrs={'class': 'form-control', 'id': 'street1', 'placeholder': 'Ex:  123 Moon Street, West Village, Barangay Moon,', 'aria-label': 'Email', 'required': True}),
+            'street2': TextInput(attrs={'class': 'form-control', 'id': 'street2', 'placeholder': 'Block No. Lot No.', 'aria-label': 'Email', 'required': True}),
+            'postcode': TextInput(attrs={'class': 'form-control', 'id': 'postcode', 'placeholder': 'Ex: 1707', 'aria-label': 'Email', 'required': True}),
         }
 
 
