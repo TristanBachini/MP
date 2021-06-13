@@ -25,7 +25,7 @@
           />
         </td>
         <td>{{c.item.clothing.name}}</td>
-        <td>{{c.item.clothing.price}}</td>
+        <td>₱ {{c.item.clothing.price}}</td>
         <td>{{c.item.quantity}}</td>
         <td>{{c.item.size}}</td>
         <td>
@@ -65,8 +65,15 @@
                       <div class="col-sm-2"></div>
                       <div class="col-sm-4 text-center">Change Quantity:</div>
                       <div class="col-sm-4">{{c.form.quantity}}</div>
-                      <div class="col-sm-4 text-center">Change Size:</div>
-                      <div class="col-sm-4">{{c.form.size}}</div>
+                      <div
+                        class="col-sm-4 text-center"
+                        style="margin-left: 0.85in; margin-top: 0.3in"
+                      >
+                        Change Size:
+                      </div>
+                      <div class="col-sm-4" style="margin-top: 0.3in">
+                        {{c.form.size}}
+                      </div>
                       <div class="col-sm-2"></div>
                     </div>
                   </div>
