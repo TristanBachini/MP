@@ -1,11 +1,13 @@
 {% extends 'sampleapp/submain.html' %} {% block content %}
 
+<div class="card bg-dark" style="padding:3%;color:white;border-radius: 5px;font-family: 'Raleway', sans-serif;margin-top: 3%;margin-left:15%;margin-right: 15%;">
 <form action="" method="post" id="reg-form">
   {% csrf_token %}
   <center>
-    <h3 style="color: white">
-    REGISTER AND BE A MEMBER OF VERMIN
-    </h3>
+    <br>
+    <h2>
+    REGISTER AND BE A MEMBER OF &nbsp;<span style="font-family: 'Times New Roman', Times, serif;font-size:1.1em;">VERMIN</span>
+    </h2>
   </center>
   
   <br />
@@ -50,7 +52,7 @@
 
   <div style="width:50%;margin-left: 15.5%;margin-right: 15%;">
     <label
-      >Have an account?<a href="{% url 'login' %}"> Login </a>instead</label
+      >Have an account? <a href="{% url 'login' %}">Login</a> instead</label
     >
     <br />
     <input
@@ -71,15 +73,8 @@
 
 <br />
 <br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
 
+</div>
 <script>
   function terms_changed(termsCheckBox) {
     //If the checkbox has been checked
