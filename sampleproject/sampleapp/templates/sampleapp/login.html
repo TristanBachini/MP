@@ -1,13 +1,14 @@
 {% extends 'sampleapp/submain.html' %} {% block content %}
 
-<div class="card" id="login-form" style="padding:5%">
+<div class="card" id="login-form" style="padding:3%;background-color: rgb(255, 255, 255);border-bottom: 5px solid #000000; border-radius: 25px;font-family: 'Raleway', sans-serif;margin-top: 5%;">
   <div class="card-body">
-    <h3 style="color: white">Login to Vermin</h3>
+    <h3>Login to Vermin</h3>
+    <br>
     <form action="" method="post">
       {% csrf_token %}
       <div class="row">
         <div class="col">
-          <label for="floatingInput">Enter Username</label>
+          <label for="floatingInput" style="font-size: 12px;">Enter Username</label>
           <input
             type="text"
             name="username"
@@ -20,7 +21,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <label for="floatingPassword">Enter Password</label>
+          <label for="floatingPassword" style="font-size: 12px;">Enter Password</label>
           <input
             type="password"
             name="password"

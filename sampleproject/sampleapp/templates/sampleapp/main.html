@@ -41,26 +41,8 @@
         border-right: solid;
       }
 
-      #grppicbutton{
-        transition: .5s ease;
-        opacity: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        text-align: center;
-      }
-
       #putMargin {
         margin-right: 9in;
-      }
-
-      #homepageID {
-        background-image: url("{% static 'sampleapp/images/bg.png' %}");
-        background-size: cover;
-        background-repeat: repeat;
-        background-attachment: fixed;
       }
 
       #inner-text {
@@ -135,7 +117,7 @@
         backface-visibility: hidden;
       }
 
-      #grpPicButton{
+      .PicButton{
         transition: .5s ease;
         opacity: 0;
         position: absolute;
@@ -146,13 +128,13 @@
         text-align: center;
       }
 
-      #grpPicDiv:hover #grpPic {
+      .PicDiv:hover #grpPic {
         filter: grayscale(100%);
         -webkit-filter: grayscale(100%);
         transition: filter 0.3s ease-in-out;
       }
 
-      #grpPicDiv:hover #grpPicButton {
+      .PicDiv:hover .PicButton {
         opacity: 1;
       }
 
@@ -162,6 +144,19 @@
 
       .card-text {
         color: white;
+      }
+
+      #homepageID {
+        background-image: url("{% static 'sampleapp/images/bg.png' %}");
+        background-size: cover;
+        background-repeat: repeat;
+        background-attachment: fixed;
+      }
+
+      #aboutUsdiv{
+        background-image: url("{% static 'sampleapp/images/submain_bg.jpeg' %}");
+        background-position: center;
+        background-size: cover;
       }
     </style>
   </head>
@@ -270,5 +265,7 @@
       </div>
     </nav>
     {% block content %} {% endblock %}
+
+    
   </body>
 </html>
