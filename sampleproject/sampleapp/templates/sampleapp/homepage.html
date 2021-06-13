@@ -1,15 +1,26 @@
 {% extends 'sampleapp/main.html' %} {% block content %} {% load static %}
 
-<div style="position: relative">
+<div id="grpPicDiv" style="position: relative">
+  <img src="{% static 'sampleapp/images/GROUP.png' %}" id="grpPic" style="width: 100%;">
+  <div id="grpPicButton">
+    <div><a id="gtcButton" href="{% url 'collections' %}">
+        <input type="submit" style="background-color: gold;border: none; font-family: 'Raleway', sans-serif; color: black; padding: 16px 32px; text-decoration: underline; margin: 4px 2px; cursor: pointer;"value="Go straight to collections"/></a></div>
+  </div>
+</div>
+
+<!--<div style="position: relative">
   <p class="imgThumb">
     <img src="{% static 'sampleapp/images/GROUP.png' %}" style="width: 100%" />
+    <div id="grppicbutton">
+      <div class="text"><a id="gtcButton" href="{% url 'collections' %}">
+        <input type="submit" style="background-color: gold;border: none; font-family: 'Raleway', sans-serif; color: black; padding: 16px 32px; text-decoration: none; margin: 4px 2px; cursor: pointer;"value="Go straight to collections"/></a></div>
+    </div>
     <span>
       <a id="gtcButton" href="{% url 'collections' %}">
-        <input type="submit" value="Go straight to collections"
-      /></a>
+        <input type="submit" style="  background-color: gold;border: none; font-family: 'Raleway', sans-serif; color: black; padding: 16px 32px; text-decoration: none; margin: 4px 2px; cursor: pointer;"value="Go straight to collections"/></a>
     </span>
   </p>
-</div>
+</div>-->
 
 <div
   id="carouselExampleControls"
@@ -61,57 +72,59 @@
 
 <br /><br />
 
-<div class="row" style="padding-left: 3%; padding-right: 2%">
-  <div class="float-child" style="width: 55%">
+<div class="float-container" style="padding: 20px;">
+
+  <div class="float-child" style="width: 50%; float: left; padding: 20px;">
     <div
-      id="carouselExampleSlidesOnly"
-      class="carousel slide"
-      data-bs-ride="carousel"
-      style="
-        float: center;
-        width: 65%;
-        -moz-box-shadow: 10px 10px 5px rgba(66, 66, 66, 0.863);
-        -webkit-box-shadow: 10px 10px 5px rgba(66, 66, 66, 0.863);
-        box-shadow: 10px 10px 5px rgba(66, 66, 66, 0.863);
-        -moz-border-radius: 25px;
-        -webkit-border-radius: 25px;
-        border-radius: 25px;
-      "
-    >
-      <div class="carousel-inner" style="border-radius: 2px">
-        <div class="carousel-item active" data-bs-interval="5000">
-          <img
-            src="{% static 'sampleapp/images/verminpic1.JPG.png' %}"
-            class="d-block w-100"
-            style="border-radius: 25px"
-          />
-        </div>
-        <div class="carousel-item" data-bs-interval="5000">
-          <img
-            src="{% static 'sampleapp/images/verminpic2.JPG.png' %}"
-            class="d-block w-100"
-            style="border-radius: 25px"
-          />
-        </div>
-        <div class="carousel-item" data-bs-interval="5000">
-          <img
-            src="{% static 'sampleapp/images/verminpic3.png' %}"
-            class="d-block w-100"
-            style="border-radius: 25px"
-          />
-        </div>
+    id="carouselExampleSlidesOnly"
+    class="carousel slide"
+    data-bs-ride="carousel"
+    style="
+      float: center;
+      width: 65%;
+      -moz-box-shadow: 10px 10px 5px rgba(66, 66, 66, 0.863);
+      -webkit-box-shadow: 10px 10px 5px rgba(66, 66, 66, 0.863);
+      box-shadow: 10px 10px 5px rgba(66, 66, 66, 0.863);
+      -moz-border-radius: 25px;
+      -webkit-border-radius: 25px;
+      border-radius: 25px;
+    "
+  >
+    <div class="carousel-inner" style="border-radius: 2px">
+      <div class="carousel-item active" data-bs-interval="5000">
+        <img
+          src="{% static 'sampleapp/images/verminpic1.JPG.png' %}"
+          class="d-block w-100"
+          style="border-radius: 25px"
+        />
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img
+          src="{% static 'sampleapp/images/verminpic2.JPG.png' %}"
+          class="d-block w-100"
+          style="border-radius: 25px"
+        />
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img
+          src="{% static 'sampleapp/images/verminpic3.png' %}"
+          class="d-block w-100"
+          style="border-radius: 25px"
+        />
       </div>
     </div>
   </div>
-
-  <div class="float-child" style="width: 45%">
+  </div>
+  
+  <div class="float-child" style="width: 50%; float: left; padding: 20px;">
     <div class="float-start">
-      <video controls autoplay loop style="width: 100%; height: auto">
+      <video controls autoplay loop style="width: 100%;">
         <source src="{% static 'sampleapp/images/verminvid1.mp4' %}"
         type=video/mp4>
       </video>
     </div>
   </div>
+  
 </div>
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
