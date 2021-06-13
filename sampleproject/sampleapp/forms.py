@@ -54,11 +54,11 @@ class CreditCardForm(ModelForm):
         model = CreditCard
         fields = "__all__"
         widgets = {
-            'cardnumber': NumberInput(attrs={'class': 'form-control', 'placeholder': 'Card Number', 'aria-label': 'Card Number'}),
-            'cardpin': NumberInput(attrs={'class': 'form-control', 'placeholder': 'Pin', 'aria-label': 'Pin'}),
-            "cardmonth": Select(attrs={'class': 'form-control', 'placeholder': 'Month', 'aria-label': 'Month'}),
-            "cardday": Select(attrs={'class': 'form-control', 'placeholder': 'Day', 'aria-label': 'Day'}),
-            "cardyear": Select(attrs={'class': 'form-control', 'placeholder': 'Year', 'aria-label': 'Year'}),
+            'cardnumber': NumberInput(attrs={'class': 'form-control', 'id': 'cardNum', 'placeholder': 'Card Number', 'aria-label': 'Card Number'}),
+            'cardpin': NumberInput(attrs={'class': 'form-control', 'id': 'cardPin', 'placeholder': 'Pin', 'aria-label': 'Pin'}),
+            "cardmonth": Select(attrs={'class': 'form-control', 'id': 'cardMonth', 'placeholder': 'Month', 'aria-label': 'Month'}),
+            "cardday": Select(attrs={'class': 'form-control', 'id': 'cardDay', 'placeholder': 'Day', 'aria-label': 'Day'}),
+            "cardyear": Select(attrs={'class': 'form-control', 'id': 'cardYear', 'placeholder': 'Year', 'aria-label': 'Year'}),
         }
 
 
@@ -67,11 +67,11 @@ class BillingAddressForm(ModelForm):
         model = Address
         fields = "__all__"
         widgets = {
-            'city': TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex: Paranaque city', 'aria-label': 'Email', 'required': True}),
-            'region': Select(attrs={'class': 'form-control', 'placeholder': '', 'aria-label': 'Email', 'required': True}),
-            'street1': TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex:  123 Moon Street, West Village, Barangay Moon,', 'aria-label': 'Email', 'required': True}),
-            'street2': TextInput(attrs={'class': 'form-control', 'placeholder': 'Block No. Lot No.', 'aria-label': 'Email', 'required': True}),
-            'postcode': TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex: 1707', 'aria-label': 'Email', 'required': True}),
+            'city': TextInput(attrs={'class': 'form-control', 'id': 'city', 'placeholder': 'Ex: Paranaque city', 'aria-label': 'Email', 'required': True}),
+            'region': Select(attrs={'class': 'form-control', 'id': 'region', 'placeholder': '', 'aria-label': 'Email', 'required': True}),
+            'street1': TextInput(attrs={'class': 'form-control', 'id': 'street1', 'placeholder': 'Ex:  123 Moon Street, West Village, Barangay Moon,', 'aria-label': 'Email', 'required': True}),
+            'street2': TextInput(attrs={'class': 'form-control', 'id': 'street1', 'placeholder': 'Block No. Lot No.', 'aria-label': 'Email', 'required': True}),
+            'postcode': TextInput(attrs={'class': 'form-control', 'id': 'postcode', 'placeholder': 'Ex: 1707', 'aria-label': 'Email', 'required': True}),
         }
 
 

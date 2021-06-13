@@ -1,54 +1,145 @@
 {% extends 'sampleapp/main.html' %} {% block content %} {% load static %}
+<form action="{% url 'finalize' %}" method="post">
+  {% csrf_token %}
+  <div class="card-group" style="width: fit-content">
+    <div
+      class="card"
+      style="background-color: #242424; margin: 10% 0 0 5%; border-radius: 5%"
+    >
+      <div class="card-body">
+        <center>
+          <h1 class="card-title" style="color: #ffcc00">Card Details</h1>
+        </center>
+        <img
+          src="http://www.prepbootstrap.com/Content/images/shared/misc/creditcardicons.png"
+          style="width: 100%"
+        />
+        <hr style="color: #ffcc00" />
 
-
-<center>
-    <div class="form" style="padding: 2in; margin: 2in; color: white;">
-        <form action="{% url 'finalize' %}"method="post">
-            {% csrf_token %}
-            <p><h1 style="color: black;"> Card Details </h1></p>
-            <p style="color: black;">Card Number</p>
-            {{creditcardform.cardnumber}}
-            <p style="color: black;">Card Pin</p>
-            {{creditcardform.cardpin}}
-            <p style="color: black;">Month</p>
-            {{creditcardform.cardmonth}}
-            <p style="color: black;">Day</p>
-            {{creditcardform.cardday}}
-            <p style="color: black;">Year</p>
-            {{creditcardform.cardyear}}
-            <br><br><br>
-            <p><h1 style="color: black;"> Billing Address </h1></p>
-            <p style="color: black;">Street Address 1</p>
-            {{billingaddressform.street1}}
-            <p style="color: black;">Street Address 2</p>
-            {{billingaddressform.street2}}
-            <p style="color: black;">City</p>
-            {{billingaddressform.city}}
-            <p style="color: black;">Region</p>
-            {{billingaddressform.region}}
-            <p style="color: black;">Post Code</p>
-            {{billingaddressform.postcode}}
-            <br><br><br>
-            <div class="shipping-address">
-                <p><h1 style="color: black;"> Shipping Address </h1></p>
-                <p style="color: black;">Street Address 1</p>
-                {{shippingaddressform.street1}}
-                <p style="color: black;">Street Address 2</p>
-                {{shippingaddressform.street2}}
-                <p style="color: black;">City</p>
-                {{shippingaddressform.city}}
-                <p style="color: black;">Region</p>
-                {{shippingaddressform.region}}
-                <p style="color: black;">Post Code</p>
-                {{shippingaddressform.postcode}}
+        <div class="form-floating mb-3">
+          {{creditcardform.cardnumber}}
+          <label for="cardNum">Card Number</label>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-floating mb-3">
+              {{creditcardform.cardmonth}}
+              <label for="cardMonth">Month</label>
             </div>
-            
-            <div>
-                <button type="submit" id="submit_button">Next</button>
+          </div>
+          <div class="col">
+            <div class="form-floating mb-3">
+              {{creditcardform.cardyear}}
+              <label for="cardYear">Year</label>
             </div>
-        </form>
+          </div>
+          <div class="col">
+            <div class="form-floating mb-3">
+              {{creditcardform.cardpin}}
+              <label for="cardPin">CVC</label>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</center>
 
+    <div
+      class="card"
+      style="background-color: #242424; border-radius: 5%; margin: 10% 0 0 5%"
+    >
+      <div class="card-body">
+        <center>
+          <h1 class="card-title" style="color: #ffcc00">Billing Address</h1>
+        </center>
+        <hr style="color: #ffcc00" />
+
+        {% csrf_token %}
+        <div class="form-floating mb-3">
+          {{billingaddressform.street1}}
+          <label for="street1">Street Address 1</label>
+        </div>
+        <div class="form-floating mb-3">
+          {{billingaddressform.street2}}
+          <label for="street2">Street Address 2</label>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="form-floating mb-3">
+              {{billingaddressform.city}}
+              <label for="city">City</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-floating mb-3">
+              {{billingaddressform.region}}
+              <label for="region">Region</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-floating mb-3">
+              {{billingaddressform.postcode}}
+              <label for="postcode">Post Code</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="card"
+      style="background-color: #242424; margin: 10% 5% 0 5%; border-radius: 5%"
+    >
+      <div class="card-body">
+        <center>
+          <h1 class="card-title" style="color: #ffcc00">Shipping Address</h1>
+        </center>
+        <hr style="color: #ffcc00" />
+
+        {% csrf_token %}
+        <div class="form-floating mb-3">
+          {{billingaddressform.street1}}
+          <label for="street1">Street Address 1</label>
+        </div>
+        <div class="form-floating mb-3">
+          {{billingaddressform.street2}}
+          <label for="street2">Street Address 2</label>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="form-floating mb-3">
+              {{billingaddressform.city}}
+              <label for="city">City</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-floating mb-3">
+              {{billingaddressform.region}}
+              <label for="region">Region</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-floating mb-3">
+              {{billingaddressform.postcode}}
+              <label for="postcode">Post Code</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <center>
+    <button
+      class="btn btn-outline-success"
+      type="submit"
+      id="submit_button"
+      style="margin-top: 1%"
+    >
+      <i class="fas fa-check-circle"></i>
+      Finalize Payment
+    </button>
+  </center>
+</form>
 
 {% endblock %}
