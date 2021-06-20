@@ -1,3 +1,4 @@
+from django.forms.widgets import DateTimeBaseInput
 from .models import *
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -34,6 +35,26 @@ def products(request, pk):
     data = {"item": item, "shoppingcartform": shoppingcartform}
 
     return render(request, 'sampleapp/products.html', data)
+
+
+def search(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        items = Item.objects.filter(name__icontains=searched)
+        itemsdict = []
+        flag = True
+        if searched == None:
+            flag = False
+
+        for item in items:
+            form = ShoppingCartForm(
+                {"user": request.user.id, "clothing": item.id, "quantity": 1}
+            )
+            itemsdict.append({"item": item, "form": form,
+                             "searched": searched, "flag": flag})
+
+    data = {"itemsdict": itemsdict}
+    return render(request, 'sampleapp/collections.html', data)
 
 
 def collections(request):

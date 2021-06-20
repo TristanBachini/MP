@@ -1,79 +1,88 @@
 {% extends 'sampleapp/submain.html' %} {% block content %}
 
-<div class="card bg-dark" style="padding:3%;color:white;border-radius: 5px;font-family: 'Raleway', sans-serif;margin-top: 3%;margin-left:15%;margin-right: 15%;">
-<form action="" method="post" id="reg-form">
-  {% csrf_token %}
-  <center>
-    <br>
-    <h2>
-    REGISTER AND BE A MEMBER OF &nbsp;<span style="font-family: 'Times New Roman', Times, serif;font-size:1.1em;">VERMIN</span>
-    </h2>
-  </center>
-  
-  <br />
+<div
+  class="card bg-dark"
+  style="
+    padding: 3%;
+    color: white;
+    border-radius: 5px;
+    font-family: 'Raleway', sans-serif;
+    margin: 3% 15% 6% 15%;
+  "
+>
+  <form action="" method="post" id="reg-form">
+    {% csrf_token %}
+    <center>
+      <br />
+      <h2>
+        REGISTER AND BE A MEMBER OF &nbsp;<span
+          style="font-family: 'Times New Roman', Times, serif; font-size: 1.1em"
+          >VERMIN</span
+        >
+      </h2>
+    </center>
 
-  <div class="row" style="margin-left: 15%;margin-right: 15%;">
-    <div class="col">Enter First Name: {{form.first_name}}</div>
-    <div class="col">Enter Last Name: {{form.last_name}}</div>
-  </div>
-  <br />
-  <br />
-  <div class="row" style="margin-left: 15%;margin-right: 15%;">
-    <div class="col">Enter Username: {{form.username}}</div>
-    <div class="col">Enter Email: {{form.email}}</div>
-  </div>
-  <br />
-  <br />
-  <div class="row" style="width:50%;margin-left: 15%;margin-right: 15%;">
-    <div class="col">Enter Password: {{form.password1}}</div>
-  </div>
-  <br />
-  <div class="row" style="width:50%;margin-left: 15%;margin-right: 15%;"> 
-    <div class="col">
-      Confirm Password: {{form.password2}}
-    </div>
-  </div>
-  <br />
-  <br />
-  {% if form.errors %} {% for key, value in form.errors.items %}
-  <div
-    class="alert alert-danger alert-dismissable fade show reg-error"
-    role="alert"
-  >
-    <strong>Error!</strong> {{value|striptags}}
-    <button
-      type="button"
-      class="btn-close"
-      data-bs-dismiss="alert"
-      aria-label="Close"
-    ></button>
-  </div>
-  {% endfor %} {% endif %}
-
-  <div style="width:50%;margin-left: 15.5%;margin-right: 15%;">
-    <label
-      >Have an account? <a href="{% url 'login' %}">Login</a> instead</label
-    >
     <br />
-    <input
-      type="checkbox"
-      id="terms_and_conditions"
-      value="1"
-      onclick="terms_changed(this)"
-    />
-    <label for="terms_and_conditions">
-      I agree to the <a href="#">Terms of Service </a></label
-    >
 
-    <div>
-      <button type="submit" class="btn btn-warning">Submit</button>
+    <div class="row" style="margin-left: 15%; margin-right: 15%">
+      <div class="col">Enter First Name: {{form.first_name}}</div>
+      <div class="col">Enter Last Name: {{form.last_name}}</div>
     </div>
-  </div>
-</form>
+    <br />
+    <br />
+    <div class="row" style="margin-left: 15%; margin-right: 15%">
+      <div class="col">Enter Username: {{form.username}}</div>
+      <div class="col">Enter Email: {{form.email}}</div>
+    </div>
+    <br />
+    <br />
+    <div class="row" style="width: 50%; margin-left: 15%; margin-right: 15%">
+      <div class="col">Enter Password: {{form.password1}}</div>
+    </div>
+    <br />
+    <div class="row" style="width: 50%; margin-left: 15%; margin-right: 15%">
+      <div class="col">Confirm Password: {{form.password2}}</div>
+    </div>
+    <br />
+    <br />
+    {% if form.errors %} {% for key, value in form.errors.items %}
+    <div
+      class="alert alert-danger alert-dismissable fade show reg-error"
+      role="alert"
+    >
+      <strong>Error!</strong> {{value|striptags}}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {% endfor %} {% endif %}
 
-<br />
-<br />
+    <div style="width: 50%; margin-left: 15.5%; margin-right: 15%">
+      <label
+        >Have an account? <a href="{% url 'login' %}">Login</a> instead</label
+      >
+      <br />
+      <input
+        type="checkbox"
+        id="terms_and_conditions"
+        value="1"
+        onclick="terms_changed(this)"
+      />
+      <label for="terms_and_conditions">
+        I agree to the <a href="#">Terms of Service </a></label
+      >
 
+      <div>
+        <button type="submit" class="btn btn-warning">Submit</button>
+      </div>
+    </div>
+  </form>
+
+  <br />
+  <br />
 </div>
 <script>
   function terms_changed(termsCheckBox) {

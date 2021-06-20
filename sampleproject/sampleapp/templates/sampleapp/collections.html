@@ -4,23 +4,48 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       {% for item in itemsdict %}
       <div class="col">
-        <div class="card shadow" ">
-
+        <div class="card shadow">
           <div class="PicDiv" style="position: relative">
             {% if item.item.image %}
-						<img id="prodPic" width="100%" src={{item.item.image.url}}>
-              {% else %}
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              {% endif %}
+            <img id="prodPic" width="100%" src="{{item.item.image.url}}" />
+            {% else %}
+            <svg
+              class="bd-placeholder-img card-img-top"
+              width="100%"
+              height="350"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Placeholder: Thumbnail"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c" />
+              <text x="40%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+            </svg>
+            {% endif %}
             <div class="PicButton">
               <div>
                 <a href="{% url 'products' item.item.id %}">
-                  <input type="submit" style="background-color: gold;border: none; font-family: 'Raleway', sans-serif; color: black; padding: 16px 32px; text-decoration: underline; margin: 4px 2px; cursor: pointer;"value="View Product"/>
+                  <input
+                    type="submit"
+                    style="
+                      background-color: gold;
+                      border: none;
+                      font-family: 'Raleway', sans-serif;
+                      color: black;
+                      padding: 16px 32px;
+                      text-decoration: underline;
+                      margin: 4px 2px;
+                      cursor: pointer;
+                    "
+                    value="View Product"
+                  />
                 </a>
               </div>
             </div>
           </div>
-        
+
           <div id="cardbody" class="card-body border-dark">
             <center>
               <h5 class="card-text">{{item.item.name}}</h5>
@@ -90,6 +115,35 @@
     </div>
   </div>
 </div>
-
+{% if searched %}
+<center>
+  <div
+    class="card"
+    style="
+      color: #ffcc00;
+      background-color: black;
+      width: fit-content;
+      padding-bottom: 2%;
+      opacity: 0.9;
+    "
+  >
+    <div class="card-body">
+      <center style="margin-top: 10%">
+        <h1>Uh oh...</h1>
+        <h2>It might have been out of stock</h2>
+        <h2>or you searched nothing.</h2>
+        <h2>Check out our full collections instead.</h2>
+        <div class="btn btn-outline-dark">
+          <a
+            href="{% url 'collections' %}"
+            style="text-decoration: none; color: #ffcc00"
+            >Collections</a
+          >
+        </div>
+      </center>
+    </div>
+  </div>
+</center>
+{% endif %}
 
 {% endblock %}
