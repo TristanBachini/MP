@@ -175,12 +175,23 @@
         <td>{{cum_price}}</td>
         <td></td>
         <td></td>
-        <td></td>
+        <td>
+          <a
+            href="{% url 'collections' %}"
+            type="button"
+            class="btn btn-outline-warning"
+            id="noDecor"
+          >
+            <i class="fas fa-shopping-cart"></i>
+            Continue Shopping
+          </a>
+        </td>
         <td>
           <a
             href="{% url 'purchase_choice' %}"
             type="button"
             class="btn btn-outline-success"
+            id="noDecor"
           >
             <i class="fas fa-check-circle"></i>
             Confirm Purchase

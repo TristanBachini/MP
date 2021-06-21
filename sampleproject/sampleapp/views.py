@@ -42,18 +42,17 @@ def search(request):
         searched = request.POST['searched']
         items = Item.objects.filter(name__icontains=searched)
         itemsdict = []
-        flag = True
-        if searched == None:
-            flag = False
+        # flag = True
+        # if searched == None:
+        #     flag = False
 
         for item in items:
             form = ShoppingCartForm(
                 {"user": request.user.id, "clothing": item.id, "quantity": 1}
             )
-            itemsdict.append({"item": item, "form": form,
-                             "searched": searched, "flag": flag})
+            itemsdict.append({"item": item, "form": form})
 
-    data = {"itemsdict": itemsdict}
+    data = {"itemsdict": itemsdict, "searched": searched}
     return render(request, 'sampleapp/collections.html', data)
 
 

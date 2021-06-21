@@ -2,8 +2,7 @@
 <div class="album py-5" style="margin-top: 5%">
   <div class="container">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {% for item in itemsdict %}
-      {% if item.item.stock > 0 %}
+      {% for item in itemsdict %} {% if item.item.stock > 0 %}
       <div class="col">
         <div class="card shadow">
           <div class="PicDiv" style="position: relative">
@@ -112,12 +111,11 @@
           </div>
         </div>
       </div>
-      {% endif %}
-      {% endfor %}
+      {% endif %} {% endfor %}
     </div>
   </div>
 </div>
-{% if searched %}
+{% if data.searched == None %}
 <center>
   <div
     class="card"
@@ -146,6 +144,4 @@
     </div>
   </div>
 </center>
-{% endif %}
-
-{% endblock %}
+{% endif %} {% endblock %}
