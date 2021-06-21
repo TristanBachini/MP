@@ -1,76 +1,101 @@
 {% extends 'sampleapp/submain.html' %} {% block content %} {% load static %}
 
-<p style="color: black;"><h1>Your Order</h1></p>
-<br><br>
-Payment Information:
-Shipping address:
-{{shippingaddress}}
-<br><br>
-Cash on delivery (Please prepare exact amount)
-<br><br>
-<p><a href="{% url 'purchase_choice' %}">Edit payment details</a></p>
-<div class="container">
-    <p><h1>Your Order</h1> Need to make changes? <a href="{% url 'cart' %}">Go back to cart</a></p>
-    <br /><br />
-    <strong> Items: </strong> {{item_count}} <br /><br />
-    <table class="table table-dark table-striped table-hover">
-      <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Size</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for c in cart %}
-        <tr>
-          <td>
-            <img
-              src="{{c.item.clothing.image.url}}"
-              style="width: 2in; height: 2in"
-            />
-          </td>
-          <td>{{c.item.clothing.name}}</td>
-          <td>{{c.item.clothing.price}}</td>
-          <td>{{c.item.quantity}}</td>
-          <td>{{c.item.size}}</td>
-        </tr>
+<style>
   
-        {% endfor %}
-        <tr>
+  a{
+    color:white
+  }
+
+  a:hover{
+    color: white;
+    text-decoration: underline;
+  }
+
+</style>
+
+<div style="margin-left: 5%;margin-right: 5%;">
+  <p style="color: black;"><h1>Your Order</h1></p>
+  Payment Information: 
+  <br>
+  For: <b>{{user.first_name}} {{user.last_name}} ({{user}})</b>
+  <br>
+  Shipping address:
+  <u>{{shippingaddress}}</u>
+  <br>
+  Payment Method : <u>Cash on delivery (Please prepare exact amount)</u>
+  <br>
+  <a href="{% url 'purchase_choice' %}" class="btn btn-sm btn-dark"><i class="fas fa-edit"></i>Edit payment information</a>
+  <br>
+  <br>
+  <div style="margin-left: 5%;margin-right: 5%;">
+      <h2>Your Cart</h2>
+      <table class="table table-dark table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in cart %}
+          <tr>
+            <td>
+              <center>
+              <img
+                src="{{c.item.clothing.image.url}}"
+                style="width: 2in; height: 2in"
+              />
+              </center>
+            </td>
+            <td>{{c.item.clothing.name}}</td>
+            <td>₱{{c.item.clothing.price}}</td>
+            <td>{{c.item.quantity}}</td>
+            <td>{{c.item.size}}</td>
+          </tr>
+    
+          {% endfor %}
+          <tr>
+              <td></td>
+              <td>Delivery fee</td>
+              <td>₱50.00</td>
+              <td></td>
+              <td></td>
+          </tr>
+          <br><br><br>
+          <tr>
             <td></td>
-            <td>Delivery fee</td>
-            <td>P50.00</td>
+            <td>Total:</td>
+            <td>₱{{cum_price}}</td>
+            <td>{{item_count}}</td>
+            <td></td>
+          </tr>
+          <tr>
             <td></td>
             <td></td>
-        </tr>
-        <br><br><br>
-        <tr>
-          <td></td>
-          <td>Total Price:</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>{{cum_price}}</td>
-          <td></td>
-          <td>
-            <form action="{% url 'confirm_cod' %}" method="GET">
-              <button type="submit"><i class="fas fa-minus-circle"></i>
-                <input name="ship" value="{{shippingaddress}}" type="hidden">
-                Confirm 
-              </button>
-            </form>
-          </td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            <td></td>
+            <td>
+              <a href="{% url 'cart' %}" class="btn btn-warning">
+                <i class="fas fa-edit"></i>
+                Edit Cart
+              </a>
+            </td>
+            <td>
+              <form action="{% url 'confirm_cod' %}" method="GET">
+                <button type="submit" class="btn btn-success"><i class="fas fa-check"></i>
+                  <input name="ship" value="{{shippingaddress}}" type="hidden">
+                  Confirm 
+                </button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+
 {% endblock %}
 
 
