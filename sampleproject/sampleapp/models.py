@@ -26,6 +26,7 @@ class Item(models.Model):
     item_type = models.ForeignKey(Type, on_delete=models.CASCADE, null=True)
     price = models.FloatField( null=True)
     image = models.ImageField(null=True, blank=True)
+    stock = models.IntegerField(MinValueValidator(0),null=True)
 
     def __str__(self):
         return self.name
@@ -78,7 +79,6 @@ class CreditCard(models.Model):
     cardnumber = models.BigIntegerField(null=True)
     cardpin = models.IntegerField(null=True, validators=[MinValueValidator(100),MaxValueValidator(999)])
     cardmonth = models.ForeignKey(Month,null=True, on_delete=models.CASCADE)
-    cardday = models.ForeignKey(Day,null=True, on_delete=models.CASCADE)
     cardyear = models.ForeignKey(Year,null=True, on_delete=models.CASCADE)
 
 class Region(models.Model):

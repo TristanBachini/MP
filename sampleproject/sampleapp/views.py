@@ -197,14 +197,14 @@ def purchase_choice(request):
 
 @login_required(login_url='login')
 def purchase_step2(request):
-    if(request.POST.get('choice') == "16" or request.POST.get('choice') == "17"):
+    if(request.POST.get('choice') == "2" or request.POST.get('choice') == "3"):
         creditcardform = CreditCardForm()
         billingaddressform = BillingAddressForm()
         shippingaddressform = ShippingAddressForm()
         data = {"creditcardform": creditcardform, "billingaddressform":
                 billingaddressform, "shippingaddressform": shippingaddressform}
         return render(request, "sampleapp/creditdebit.html", data)
-    if(request.POST.get('choice') == "18"):
+    if(request.POST.get('choice') == "4"):
         shippingaddressform = ShippingAddressForm()
         data = {"shippingaddressform": shippingaddressform}
         return render(request, "sampleapp/cashondelivery.html", data)
@@ -282,6 +282,7 @@ def finalize(request):
         data = {"itemsdict": itemsdict}
         return render(request, 'sampleapp/homepage.html', data)
     elif(shippingaddressform.is_valid()):
+        print(creditcardform.errors)
         items = ShoppingCart.objects.filter(user=request.user).order_by('id')
         cart = []
         cum_price = 0

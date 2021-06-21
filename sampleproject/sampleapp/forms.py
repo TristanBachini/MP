@@ -57,7 +57,6 @@ class CreditCardForm(ModelForm):
             'cardnumber': NumberInput(attrs={'class': 'form-control', 'id': 'cardNum', 'placeholder': 'Card Number', 'aria-label': 'Card Number'}),
             'cardpin': NumberInput(attrs={'class': 'form-control', 'id': 'cardPin', 'placeholder': 'Pin', 'aria-label': 'Pin'}),
             "cardmonth": Select(attrs={'class': 'form-control', 'id': 'cardMonth', 'placeholder': 'Month', 'aria-label': 'Month'}),
-            "cardday": Select(attrs={'class': 'form-control', 'id': 'cardDay', 'placeholder': 'Day', 'aria-label': 'Day'}),
             "cardyear": Select(attrs={'class': 'form-control', 'id': 'cardYear', 'placeholder': 'Year', 'aria-label': 'Year'}),
         }
 
