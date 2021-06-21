@@ -47,6 +47,7 @@ Card ending in {{card}}
     <table class="table table-dark table-striped table-hover">
       <thead>
         <tr>
+          <th scope="col"></th>
           <th scope="col">Name</th>
           <th scope="col">Price</th>
           <th scope="col">Quantity</th>
@@ -56,6 +57,12 @@ Card ending in {{card}}
       <tbody>
         {% for c in cart %}
         <tr>
+          <td>
+            <img
+              src="{{c.item.clothing.image.url}}"
+              style="width: 2in; height: 2in"
+            />
+          </td>
           <td>{{c.item.clothing.name}}</td>
           <td>{{c.item.clothing.price}}</td>
           <td>{{c.item.quantity}}</td>
@@ -64,14 +71,24 @@ Card ending in {{card}}
   
         {% endfor %}
         <tr>
+          <tr>
+            <td></td>
+            <td>Delivery fee</td>
+            <td>P50.00</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
           <td></td>
           <td>Total Price:</td>
+          <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td></td>
           <td>{{cum_price}}</td>
+          <td></td>
           <td></td>
           <td></td>
         </tr>

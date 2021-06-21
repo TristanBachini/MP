@@ -197,14 +197,14 @@ def purchase_choice(request):
 
 @login_required(login_url='login')
 def purchase_step2(request):
-    if(request.POST.get('choice') == "2" or request.POST.get('choice') == "3"):
+    if(request.POST.get('choice') == "16" or request.POST.get('choice') == "17"):
         creditcardform = CreditCardForm()
         billingaddressform = BillingAddressForm()
         shippingaddressform = ShippingAddressForm()
         data = {"creditcardform": creditcardform, "billingaddressform":
                 billingaddressform, "shippingaddressform": shippingaddressform}
         return render(request, "sampleapp/creditdebit.html", data)
-    if(request.POST.get('choice') == "4"):
+    if(request.POST.get('choice') == "18"):
         shippingaddressform = ShippingAddressForm()
         data = {"shippingaddressform": shippingaddressform}
         return render(request, "sampleapp/cashondelivery.html", data)
@@ -227,6 +227,7 @@ def finalize(request):
                 {"user": item.user.id, "clothing": item.clothing.id, "quantity": item.quantity})
             cart.append({"item": item, "form": form})
 
+        cum_price += 50
         cum_price_decimal = "{:.2f}".format(cum_price)
         cum_price = float(cum_price_decimal)
 
@@ -398,6 +399,7 @@ def generate_pdf(request):
             {"user": item.user.id, "clothing": item.clothing.id, "quantity": item.quantity})
         cart.append({"item": item, "form": form})
 
+    cum_price += 50
     cum_price_decimal = "{:.2f}".format(cum_price)
     cum_price = float(cum_price_decimal)
 
