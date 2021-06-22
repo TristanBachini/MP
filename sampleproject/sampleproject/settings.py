@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '%w8k*jtm7zob_+jv+p9$7%k=9vbo^#ehhpcq5-iy(4ak5xr5y='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 
 # Application definition
@@ -77,11 +77,10 @@ WSGI_APPLICATION = 'sampleproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'verminonlineshop',
-        'USER': 'root',
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'PORT': 3306,
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'vermin',
+        'USER': 'postgres',
+        'PASSWORD': 'ggelo',
         'HOST': '127.0.0.1',
     }
 }
@@ -132,8 +131,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'sampleapp/static/sampleapp/images')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = "tristanbachinibackend@gmail.com"
+EMAIL_HOST_USER = "dummie9956@gmail.com"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_HOST_PASSWORD = 'weakakoeh0120'
