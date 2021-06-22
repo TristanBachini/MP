@@ -437,3 +437,6 @@ def orders(request):
     return render(request, 'sampleapp/history.html', data)
 
         
+# ERROR 404 PAGE
+def error_404_view(request, exception):
+    return render(request, 'sampleapp/404.html')
