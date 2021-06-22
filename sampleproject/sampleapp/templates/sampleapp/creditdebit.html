@@ -82,6 +82,22 @@
               <label for="postcode">Post Code</label>
             </div>
           </div>
+          <center>
+          <div class="form-floating mb-3 text-white">
+            (Optional) Enter Promo Code:
+            <input type="text" name="promocode">
+            <br><br>
+            <button 
+              class="btn btn-outline-success"
+              type="submit"
+              id="submit_button"
+              style="margin-top: 1%"
+          >
+            <i class="fas fa-check-circle"></i>
+            Finalize Payment
+          </button>
+          </div>
+          </center>
         </div>
       </div>
     </div>
@@ -129,19 +145,6 @@
       </div>
     </div>
   </div>
-  <center>
-      (Optional) Enter Promo Code:
-    <input type="text" name="promocode">
-    <button
-      class="btn btn-outline-success"
-      type="submit"
-      id="submit_button"
-      style="margin-top: 1%"
-    >
-      <i class="fas fa-check-circle"></i>
-      Finalize Payment
-    </button>
-  </center>
 </form>
 
 {% endblock %}
