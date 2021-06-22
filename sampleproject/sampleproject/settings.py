@@ -81,14 +81,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'vermin',
         'USER': 'postgres',
-<<<<<<< HEAD
         'PASSWORD': 'qlo0120',
         'PORT': 5432,
         # 'HOST': '127.0.0.1',
-=======
-        'PASSWORD': 'ggelo',
-        'HOST': '127.0.0.1',
->>>>>>> refs/remotes/origin/master
     }
 }
 
