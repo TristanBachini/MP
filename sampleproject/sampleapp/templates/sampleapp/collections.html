@@ -15,7 +15,7 @@
       {% endfor %}
     </center>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {% for item in itemsdict %}
+      {% for item in itemsdict %} 
       <div class="col">
         <div class="card shadow">
           <div class="PicDiv" style="position: relative">
@@ -76,7 +76,9 @@
                 to cart
               </button>
               {% else %}
-              <p style="color: white">OUT OF STOCK</p>
+              <p style="color: white">
+                OUT OF STOCK
+              </p>
               {% endif %}
             </center>
             <div class="modal fade" id="add_to_cart_{{item.item.id}}">
@@ -132,4 +134,33 @@
     </div>
   </div>
 </div>
-{% endblock %}
+{% if data.searched == None %}
+<center>
+  <div
+    class="card"
+    style="
+      color: #ffcc00;
+      background-color: black;
+      width: fit-content;
+      padding-bottom: 2%;
+      opacity: 0.9;
+    "
+  >
+    <div class="card-body">
+      <center style="margin-top: 10%">
+        <h1>Uh oh...</h1>
+        <h2>It might have been out of stock</h2>
+        <h2>or you searched nothing.</h2>
+        <h2>Check out our full collections instead.</h2>
+        <div class="btn btn-outline-dark">
+          <a
+            href="{% url 'collections' %}"
+            style="text-decoration: none; color: #ffcc00"
+            >Collections</a
+          >
+        </div>
+      </center>
+    </div>
+  </div>
+</center>
+{% endif %} {% endblock %}

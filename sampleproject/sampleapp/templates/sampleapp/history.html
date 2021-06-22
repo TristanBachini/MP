@@ -1,32 +1,8 @@
 {% extends 'sampleapp/submain.html' %} {% block content %} {% load static %}
-<style></style>
+
 <div class="container">
   <h1>Your Order History</h1>
-  <form action="" method="get">
-    {% csrf_token %}
-    <div
-      class="card card-body"
-      style="
-        background-color: transparent;
-        border: transparent;
-        width: fit-content;
-      "
-    >
-      <div class="row">
-        <div class="col">
-          {{filter.form}}
-          <button class="btn btn-dark" type="submit">Search</button>
-          <div class="btn btn-dark">
-            <a
-              href="{% url 'orders' %}"
-              style="text-decoration: none; color: white"
-              >Clear Searches</a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
+  <br /><br />
   <table class="table table-dark table-striped table-hover">
     <thead>
       <tr>
@@ -36,23 +12,13 @@
         <th scope="col">Quantity purchased</th>
       </tr>
     </thead>
-    <!-- <tbody>
+    <tbody>
       {% for h in history %}
       <tr>
         <td style="color: white">{{h.order.shoppingcart}}</td>
         <td style="color: white">{{h.order.date_ordered}}</td>
         <td style="color: white">{{h.order.price}}</td>
         <td style="color: white">{{h.order.quantity}}</td>
-      </tr>
-      {% endfor %}
-    </tbody> -->
-    <tbody>
-      {% for o in orders %}
-      <tr>
-        <td style="color: white">{{o.shoppingcart}}</td>
-        <td style="color: white">{{o.date_ordered}}</td>
-        <td style="color: white">{{o.price}}</td>
-        <td style="color: white">{{o.quantity}}</td>
       </tr>
       {% endfor %}
     </tbody>
