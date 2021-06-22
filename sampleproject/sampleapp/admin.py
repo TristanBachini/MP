@@ -11,5 +11,6 @@ admin.site.register(Month)
 admin.site.register(Year)
 admin.site.register(Region)
 admin.site.register(Order)
+admin.site.register(Promo)
 
 

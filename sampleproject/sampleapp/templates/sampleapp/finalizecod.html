@@ -64,6 +64,13 @@
               <td></td>
               <td></td>
           </tr>
+          <tr>
+            <td></td>
+            <td>Promocode: {{promocode}}</td>
+            <td>Discount: {{discount}}</td>
+            <td></td>
+            <td></td>
+        </tr>
           <br><br><br>
           <tr>
             <td></td>
@@ -86,6 +93,7 @@
               <form action="{% url 'confirm_cod' %}" method="GET">
                 <button type="submit" class="btn btn-success"><i class="fas fa-check"></i>
                   <input name="ship" value="{{shippingaddress}}" type="hidden">
+                  <input name="discount" value="{{discount}}" type="hidden">
                   Confirm 
                 </button>
               </form>

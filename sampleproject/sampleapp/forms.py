@@ -39,6 +39,15 @@ class ShoppingCartForm(ModelForm):
             'size': Select(attrs={'class': 'form-control', 'min': '1'})
         }
 
+class PromoForm(ModelForm):
+    class Meta:
+        model = Promo
+        fields = "__all__"
+        widgets = {
+            'promo': TextInput(attrs={'class': 'form-control', 'placeholder': 'Email', 'aria-label': 'Email'}),
+            'off':  HiddenInput(attrs={'type': 'hidden'})
+        }
+
 
 class PurchaseChoiceForm(ModelForm):
     class Meta:

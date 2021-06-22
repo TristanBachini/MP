@@ -14,6 +14,13 @@ class Type(models.Model):
     def __str__(self):
         return self.type
 
+class Promo(models.Model):
+    promo = models.CharField(max_length=10,null=True)
+    off = models.FloatField(null=True)
+
+    def __str__(self):
+        return self.promo
+
 
 class Size(models.Model):
     size = models.CharField(max_length=100, null=True)
@@ -27,7 +34,7 @@ class Item(models.Model):
     item_type = models.ForeignKey(Type, on_delete=models.CASCADE, null=True)
     price = models.FloatField(null=True)
     image = models.ImageField(null=True, blank=True)
-    stock = models.IntegerField(MinValueValidator(0), null=True)
+    stock = models.IntegerField(validators=[MinValueValidator(0)], null=True)
 
     def __str__(self):
         return self.name

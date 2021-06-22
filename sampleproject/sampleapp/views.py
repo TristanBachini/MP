@@ -1,3 +1,4 @@
+from os import name
 from django.forms.widgets import DateTimeBaseInput
 from .models import *
 from django.shortcuts import render, redirect
@@ -114,7 +115,7 @@ def login_page(request):
             return redirect('/')
         else:
             print("Login Failed.")
-            messages.error(request, "Incorrect password or username")
+             
 
     return render(request, 'sampleapp/login.html')
 
@@ -145,8 +146,26 @@ def add_to_cart(request):
         form = ShoppingCartForm(request.POST)
         print(form)
         if(form.is_valid()):
-            form.save()
-            return redirect('/cart')
+            quantity = form.cleaned_data.get('quantity')
+            itemid = form.cleaned_data.get('clothing')
+            print(itemid)
+            item  = Item.objects.get(name = itemid)
+
+            if(item.stock<quantity):
+                messages.error(request, "There is currently not enough stock to fulfill the quantity you have ordered")
+                items = Item.objects.all()
+                itemsdict = []
+
+                for item in items:
+                    form = ShoppingCartForm(
+                        {"user": request.user.id, "clothing": item.id, "quantity": 1})
+                    itemsdict.append({"item": item, "form": form})
+
+                data = {"itemsdict": itemsdict}
+                return render(request, 'sampleapp/collections.html', data)
+            else:
+                form.save()
+                return redirect('/cart')
 
 
 @login_required(login_url='/login')
@@ -196,14 +215,14 @@ def purchase_choice(request):
 
 @login_required(login_url='login')
 def purchase_step2(request):
-    if(request.POST.get('choice') == "16" or request.POST.get('choice') == "17"):
+    if(request.POST.get('choice') == "2" or request.POST.get('choice') == "3"):
         creditcardform = CreditCardForm()
         billingaddressform = BillingAddressForm()
         shippingaddressform = ShippingAddressForm()
         data = {"creditcardform": creditcardform, "billingaddressform":
                 billingaddressform, "shippingaddressform": shippingaddressform}
         return render(request, "sampleapp/creditdebit.html", data)
-    if(request.POST.get('choice') == "18"):
+    if(request.POST.get('choice') == "4"):
         shippingaddressform = ShippingAddressForm()
         data = {"shippingaddressform": shippingaddressform}
         return render(request, "sampleapp/cashondelivery.html", data)
@@ -211,6 +230,13 @@ def purchase_step2(request):
 
 @login_required(login_url='login')
 def finalize(request):
+    promocode = request.POST.get('promocode')
+    promo = Promo.objects.filter(promo = promocode)
+    discountpercent = 0
+    if(promo):
+        discountpercent = float(promo[0].off)
+    else:
+        promocode = "None"
     billingaddressform = BillingAddressForm(request.POST)
     shippingaddressform = ShippingAddressForm(request.POST)
     creditcardform = CreditCardForm(request.POST)
@@ -229,6 +255,8 @@ def finalize(request):
         cum_price += 50
         cum_price_decimal = "{:.2f}".format(cum_price)
         cum_price = float(cum_price_decimal)
+        discount = cum_price*discountpercent
+        cum_price -= discount
 
         region = str(shippingaddressform.cleaned_data.get('region'))
         regionbill = str(billingaddressform.cleaned_data.get('region'))
@@ -239,7 +267,7 @@ def finalize(request):
         billingaddress = billingaddressform.cleaned_data.get('street2') + " " + billingaddressform.cleaned_data.get(
             'street1') + ", " + billingaddressform.cleaned_data.get('city') + ", " + regionbill + ", " + billingaddressform.cleaned_data.get('postcode')
         data = {"cart": cart, "cum_price": cum_price, "item_count": item_count,
-                "shippingaddress": shippingaddress, "billingaddress": billingaddress, "cardnumber": cardnumber}
+                "shippingaddress": shippingaddress, "billingaddress": billingaddress, "cardnumber": cardnumber, "promocode":promocode, "discount":discount}
 
         return render(request, "sampleapp/finalize.html", data)
     elif(request.method == "GET"):
@@ -269,6 +297,9 @@ def finalize(request):
                 order.save()
 
         for item in items:
+            stockitem = Item.objects.get(name = item.clothing)
+            stockitem.stock = stockitem.stock - item.quantity
+            stockitem.save()
             item.delete()
 
         items = Item.objects.all()
@@ -279,10 +310,10 @@ def finalize(request):
                 {"user": request.user.id, "clothing": item.id, "quantity": 1})
             itemsdict.append({"item": item, "form": form})
 
+        messages.success(request, "Your order was successfully placed")
         data = {"itemsdict": itemsdict}
         return render(request, 'sampleapp/homepage.html', data)
     elif(shippingaddressform.is_valid()):
-        print(creditcardform.errors)
         items = ShoppingCart.objects.filter(user=request.user).order_by('id')
         cart = []
         cum_price = 0
@@ -297,13 +328,15 @@ def finalize(request):
         cum_price += 50
         cum_price_decimal = "{:.2f}".format(cum_price)
         cum_price = float(cum_price_decimal)
+        discount = cum_price*discountpercent
+        cum_price -= discount
 
         region = str(shippingaddressform.cleaned_data.get('region'))
         shippingaddress = shippingaddressform.cleaned_data.get('street2') + " " + shippingaddressform.cleaned_data.get(
             'street1') + ", " + shippingaddressform.cleaned_data.get('city') + ", " + region + ", " + shippingaddressform.cleaned_data.get('postcode')
 
         data = {"cart": cart, "cum_price": cum_price,
-                "item_count": item_count, "shippingaddress": shippingaddress}
+                "item_count": item_count, "shippingaddress": shippingaddress, "promocode":promocode, "discount":discount}
 
         return render(request, 'sampleapp/finalizecod.html', data)
 
@@ -341,6 +374,9 @@ def confirm_cod(request):
             order.save()
 
     for item in items:
+        stockitem = Item.objects.get(name = item.clothing)
+        stockitem.stock = stockitem.stock - item.quantity
+        stockitem.save()
         item.delete()
 
     items = Item.objects.all()
@@ -350,7 +386,8 @@ def confirm_cod(request):
         form = ShoppingCartForm(
             {"user": request.user.id, "clothing": item.id, "quantity": 1})
         itemsdict.append({"item": item, "form": form})
-
+    
+    messages.success(request, "Your order was successfully placed")
     data = {"itemsdict": itemsdict}
     return render(request, 'sampleapp/homepage.html', data)
 
@@ -369,11 +406,14 @@ def generate_pdf_cod(request):
         cart.append({"item": item, "form": form})
     cum_price += 50
     shippingaddress = request.GET.get('ship')
+    discount = request.GET.get('discount')
     cum_price_decimal = "{:.2f}".format(cum_price)
     cum_price = float(cum_price_decimal)
+    discountprice = float(discount)
+    cum_price -=discountprice
 
     content = {"cart": cart, "cum_price": cum_price,
-               "item_count": item_count, "shippingaddress": shippingaddress}
+               "item_count": item_count, "shippingaddress": shippingaddress,"discount":discount}
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'filename="receiptcod.pdf'
@@ -383,40 +423,6 @@ def generate_pdf_cod(request):
 
     if not pdf.err:
         return response
-
-
-def generate_pdf(request):
-    template_path = 'sampleapp/receipt.html'
-    items = ShoppingCart.objects.filter(user=request.user).order_by('id')
-    cart = []
-    cum_price = 0
-    item_count = 0
-    for item in items:
-        cum_price = cum_price + (item.quantity * item.clothing.price)
-        item_count = item_count + item.quantity
-        form = ShoppingCartForm(
-            {"user": item.user.id, "clothing": item.clothing.id, "quantity": item.quantity})
-        cart.append({"item": item, "form": form})
-
-    cum_price += 50
-    cum_price_decimal = "{:.2f}".format(cum_price)
-    cum_price = float(cum_price_decimal)
-
-    shippingaddress = request.GET.get('ship')
-    billingaddress = request.GET.get('bill')
-    card = request.GET.get('card')
-    content = {"cart": cart, "cum_price": cum_price, "item_count": item_count,
-               "shippingaddress": shippingaddress, "billingaddress": billingaddress, "card": card}
-
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'filename="receipt.pdf'
-    template = get_template(template_path)
-    html = template.render(content)
-    pdf = pisa.CreatePDF(html, dest=response)
-
-    if not pdf.err:
-        return response
-
 
 @login_required(login_url='login')
 def orders(request):
@@ -429,3 +435,5 @@ def orders(request):
     data = {"history": history}
 
     return render(request, 'sampleapp/history.html', data)
+
+        
