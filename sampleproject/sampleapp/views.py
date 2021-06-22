@@ -443,3 +443,11 @@ def orders(request):
 
     data = {"orders": orders, "filter": filter}
     return render(request, 'sampleapp/history.html', data)
+<<<<<<< HEAD
+=======
+
+        
+# ERROR 404 PAGE
+def error_404_view(request, exception):
+    return render(request, 'sampleapp/404.html')
+>>>>>>> refs/remotes/origin/master

@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '%w8k*jtm7zob_+jv+p9$7%k=9vbo^#ehhpcq5-iy(4ak5xr5y='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 
 # Application definition
@@ -81,9 +81,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'vermin',
         'USER': 'postgres',
+<<<<<<< HEAD
         'PASSWORD': 'qlo0120',
         'PORT': 5432,
         # 'HOST': '127.0.0.1',
+=======
+        'PASSWORD': 'ggelo',
+        'HOST': '127.0.0.1',
+>>>>>>> refs/remotes/origin/master
     }
 }
 
