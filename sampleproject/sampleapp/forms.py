@@ -39,6 +39,7 @@ class ShoppingCartForm(ModelForm):
             'size': Select(attrs={'class': 'form-control', 'min': '1'})
         }
 
+
 class PromoForm(ModelForm):
     class Meta:
         model = Promo

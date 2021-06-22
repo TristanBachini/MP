@@ -1,4 +1,21 @@
-{% extends 'sampleapp/main.html' %} {% block content %} {% load static %}
+{% extends 'sampleapp/main.html' %} {% block content %} {% load static %} 
+<!-- {% for item in itemsdict %}  -->
+<!-- {% if searched %} 
+<div class="card" style="margin-top: 10%;">
+    <div class="card-body">
+    NICE
+    </div>
+</div>
+{% else %} 
+<div class="card">
+    <div class="card-body">
+    NOT NICE
+    </div>
+</div>
+{% endif %} -->
+<!-- {% endfor %} -->
+
+{% if searched %}
 <div class="album py-5" style="margin-top: 5%">
   <div class="container">
     <center>
@@ -15,7 +32,7 @@
       {% endfor %}
     </center>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {% for item in itemsdict %}
+    {% for item in itemsdict %}
       <div class="col">
         <div class="card shadow">
           <div class="PicDiv" style="position: relative">
@@ -132,4 +149,36 @@
     </div>
   </div>
 </div>
+{% else %}
+<center>
+  <div
+    class="card"
+    style="
+      color: #ffcc00;
+      background-color: black;
+      width: fit-content;
+      padding-bottom: 2%;
+      opacity: 0.9;
+      margin-top: 10%;
+    "
+  >
+    <div class="card-body">
+      <center style="margin-top: 10%">
+        <h1>Uh oh...</h1>
+        <h2>It might have been out of stock</h2>
+        <h2>or you searched nothing.</h2>
+        <h2>Check out our full collections instead.</h2>
+        <div class="btn btn-outline-dark">
+          <a
+            href="{% url 'collections' %}"
+            style="text-decoration: none; color: #ffcc00"
+            >Collections</a
+          >
+        </div>
+      </center>
+    </div>
+  </div>
+</center> 
+{% endif %}
+
 {% endblock %}
