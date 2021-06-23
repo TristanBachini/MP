@@ -41,7 +41,7 @@ def products(request, pk):
 
 def search(request):
     if request.method == "POST":
-        searched = request.POST['searched']
+        searched = request.POST.get('searched')
         items = Item.objects.filter(name__icontains=searched)
         itemsdict = []
         # flag = True
@@ -55,7 +55,7 @@ def search(request):
             itemsdict.append({"item": item, "form": form})
 
     data = {"itemsdict": itemsdict, "searched": searched}
-    return render(request, 'sampleapp/collections.html', data)
+    return render(request, 'sampleapp/search.html', data)
 
 
 def collections(request):

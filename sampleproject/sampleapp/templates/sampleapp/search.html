@@ -1,4 +1,5 @@
 {% extends 'sampleapp/main.html' %} {% block content %} {% load static %}
+{% if searched %}
 <div class="album py-5" style="margin-top: 5%">
   <div class="container">
     <center>
@@ -133,4 +134,35 @@
       {% endfor %}
     </div>
   </div>
-</div> {% endblock %}
+</div>
+{% else %}
+<center>
+  <div
+    class="card"
+    style="
+      color: #ffcc00;
+      background-color: black;
+      width: fit-content;
+      margin-top: 10%;
+      padding-bottom: 2%;
+      opacity: 0.9;
+    "
+  >
+    <div class="card-body">
+      <center style="margin-top: 10%">
+        <h1>Uh oh...</h1>
+        <h2>It might have been out of stock</h2>
+        <h2>or you searched nothing.</h2>
+        <h2>Check out our full collections instead.</h2>
+        <div class="btn btn-outline-dark">
+          <a
+            href="{% url 'collections' %}"
+            style="text-decoration: none; color: #ffcc00"
+            >Collections</a
+          >
+        </div>
+      </center>
+    </div>
+  </div>
+</center>
+{% endif %} {% endblock %}
