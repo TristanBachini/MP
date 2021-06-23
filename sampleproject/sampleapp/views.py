@@ -62,6 +62,7 @@ def collections(request):
     itemsdict = []
 
     for item in items:
+        print(item.image.url)
         form = ShoppingCartForm(
             {"user": request.user.id, "clothing": item.id, "quantity": 1})
         itemsdict.append({"item": item, "form": form})
@@ -436,11 +437,7 @@ def orders(request):
 
     return render(request, 'sampleapp/history.html', data)
 
-<<<<<<< HEAD
 
 # ERROR 404 PAGE
 def error_404_view(request, exception):
     return render(request, 'sampleapp/404.html')
-=======
-        
->>>>>>> parent of 3f3e25d (search orders, cart)

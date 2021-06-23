@@ -25,13 +25,13 @@ SECRET_KEY = '%w8k*jtm7zob_+jv+p9$7%k=9vbo^#ehhpcq5-iy(4ak5xr5y='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sampleapp',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -124,12 +126,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,"sampleapp", "staticfiles")
 
-MEDIA_URL = '/images/'
+MEDIA_URL = 'static/sampleapp/images/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'sampleapp/static')]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'sampleapp/static/sampleapp/images')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'sampleproject/sampleapp/staticfiles/sampleapp/images')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = "tristanbachinibackend@gmail.com"
