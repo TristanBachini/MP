@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'sampleproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'verminonlineshop',
-        'USER': 'root',
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'PORT': 3306,
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'vermin',
+        'USER': 'postgres',
+        'PASSWORD': 'qlo0120',
+        'PORT': 5432,
         'HOST': '127.0.0.1',
     }
 }
@@ -126,17 +126,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,"sampleapp", "staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR, "sampleapp", "staticfiles")
 
 MEDIA_URL = 'static/sampleapp/images/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'sampleapp/static')]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'sampleproject/sampleapp/staticfiles/sampleapp/images')
+MEDIA_ROOT = os.path.join(
+    BASE_DIR, 'sampleproject/sampleapp/staticfiles/sampleapp/images')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = "tristanbachinibackend@gmail.com"
+EMAIL_HOST_USER = "dummie9956@gmail.com"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_HOST_PASSWORD = 'weakakoeh0120'
