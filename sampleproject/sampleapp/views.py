@@ -145,13 +145,10 @@ def add_to_cart(request):
         return render(request, 'sampleapp/collections.html', data)
     else:
         form = ShoppingCartForm(request.POST)
-        print(form)
         if(form.is_valid()):
             quantity = form.cleaned_data.get('quantity')
             itemid = form.cleaned_data.get('clothing')
-            print(itemid)
             item  = Item.objects.get(name = itemid)
-
             if(item.stock<quantity):
                 messages.error(request, "There is currently not enough stock to fulfill the quantity you have ordered")
                 items = Item.objects.all()
@@ -165,6 +162,7 @@ def add_to_cart(request):
                 data = {"itemsdict": itemsdict}
                 return render(request, 'sampleapp/collections.html', data)
             else:
+                
                 form.save()
                 return redirect('/cart')
 
